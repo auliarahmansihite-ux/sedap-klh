@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 
 # Install dependencies (hanya package.json dulu agar build cache optimal)
 COPY package*.json ./
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 
 # Copy semua file project
 COPY . .
