@@ -1,0 +1,24 @@
+{
+  "name": "sedap-klh",
+  "version": "1.0.0",
+  "description": "Website resmi Direktorat PSDA Berkelanjutan - Kementerian Lingkungan Hidup / BPLH",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop sedap-klh",
+    "pm2:restart": "pm2 restart sedap-klh",
+    "pm2:logs": "pm2 logs sedap-klh"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.9.1",
+    "dotenv": "^16.5.0",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

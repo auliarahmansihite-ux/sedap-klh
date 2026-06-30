@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Survei Persepsi Anti Korupsi — Dit. PSDA Berkelanjutan</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo"><img src="assets/images/logo.png" alt="Logo" style="height:32px; width:auto;"></div>
+      <div class="nav-brand-text">
+        <h1>DIREKTORAT PSDAB</h1>
+        <p>Kementerian Lingkungan Hidup / BPLH</p>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="tentang.html">Tentang</a>
+      <div class="has-dropdown">
+        <a>Informasi</a>
+        <div class="dropdown">
+          <a href="informasi-peraturan.html"><span class="dropdown-icon">📜</span>Peraturan</a>
+          <a href="informasi-berita.html"><span class="dropdown-icon">📰</span>Berita</a>
+          <a href="informasi-infografis.html"><span class="dropdown-icon">📊</span>Infografis</a>
+          <a href="informasi-videografis.html"><span class="dropdown-icon">🎬</span>Videografis</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Layanan</a>
+        <div class="dropdown">
+          <a href="layanan-rpplh.html"><span class="dropdown-icon">🌿</span>RPPLH</a>
+          <a href="https://egis.kemenlh.go.id" target="_blank"><span class="dropdown-icon">🗺️</span>Spasial</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a class="active">Survei</a>
+        <div class="dropdown">
+          <a href="survei-kepuasan.html"><span class="dropdown-icon">⭐</span>Kepuasan Masyarakat</a>
+          <a href="survei-antikorupsi.html"><span class="dropdown-icon">🛡️</span>Persepsi Anti Korupsi</a>
+          <a href="survei-whistleblowing.html"><span class="dropdown-icon">📢</span>Whistle Blowing</a>
+        </div>
+      </div>
+      
+      <button id="themeToggle" aria-label="Toggle Theme" style="background:transparent; border:none; color:var(--white); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; transition:var(--transition);" onmouseover="this.style.background='rgba(128,128,128,0.1)'" onmouseout="this.style.background='transparent'">
+        <span id="themeIcon">☀️</span>
+      </button>
+      <a class="nav-cta" href="tentang.html#kontak">Kontak</a>
+    </div>
+    <button aria-label="Buka menu" class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> <span>Survei</span> <span>/</span> <span>Persepsi Anti Korupsi</span></div>
+      <h1>Survei Persepsi Anti Korupsi</h1>
+      <p>Bantu kami mewujudkan dan mempertahankan Zona Integritas Wilayah Bebas Korupsi (ZI-WBK) dengan memberikan penilaian yang jujur.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div style="background: rgba(201,162,39,0.1); border: 1px solid var(--border-gold); padding: 2rem; border-radius: var(--radius-lg); text-align: center; margin-bottom: 3rem;" class="fade-up">
+      <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--gold-300); margin-bottom: 0.5rem;">Komitmen Zona Integritas</h2>
+      <p style="color: var(--gray-200); font-size: 1rem; max-width: 800px; margin: 0 auto;">Direktorat PSDA Berkelanjutan berkomitmen penuh mewujudkan Wilayah Bebas dari Korupsi (WBK) dan Wilayah Birokrasi Bersih dan Melayani (WBBM). Kami <strong>TIDAK MENERIMA GRATIFIKASI</strong> dalam bentuk apapun atas layanan yang diberikan.</p>
+    </div>
+
+    <div class="survei-form fade-up" id="formAntikorupsi" style="max-width: 800px; margin: 0 auto;">
+      <div class="form-content">
+        <h3>KUESIONER SURVEI INDEKS PERSEPSI ANTI KORUPSI DIREKTORAT PENYELENGGARAAN SUMBER DAYA ALAM BERKELANJUTAN KLH/BPLH</h3>
+        
+        <div class="form-steps-bar">
+          <div class="form-step-indicator active">1· Identitas Responden</div>
+          <div class="form-step-indicator">2· Survei Kuesioner</div>
+        </div>
+
+        <!-- Pane 1: Identitas -->
+        <div class="form-pane active" id="pak-p1">
+          <div class="form-group">
+            <label>Email <span>*</span></label>
+            <input class="form-control" type="email" required />
+          </div>
+          
+          <div class="form-group">
+              <label>No Telepon <span>*</span></label>
+              <input type="text" class="form-control" placeholder="08xxxxxxxxxx" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+            </div>
+
+          <div class="form-group">
+            <label>Jenis Kelamin <span>*</span></label>
+            <div class="radio-group" style="flex-direction: column;">
+              <label class="radio-label"><input type="radio" name="jk" value="Laki-Laki" required> Laki-Laki</label>
+              <label class="radio-label"><input type="radio" name="jk" value="Perempuan"> Perempuan</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Usia <span>*</span></label>
+            <input class="form-control" type="text" required />
+          </div>
+
+          <div class="form-group">
+            <label>Pendidikan <span>*</span></label>
+            <div class="radio-group" style="flex-direction: column;">
+              <label class="radio-label"><input type="radio" name="pendidikan" value="D1" required> D1</label>
+              <label class="radio-label"><input type="radio" name="pendidikan" value="D2"> D2</label>
+              <label class="radio-label"><input type="radio" name="pendidikan" value="D3"> D3</label>
+              <label class="radio-label"><input type="radio" name="pendidikan" value="D4"> D4</label>
+              <label class="radio-label"><input type="radio" name="pendidikan" value="S1"> S1</label>
+              <label class="radio-label"><input type="radio" name="pendidikan" value="S2"> S2</label>
+              <label class="radio-label"><input type="radio" name="pendidikan" value="S3"> S3</label>
+              <label class="radio-label" style="display: flex; align-items: center; gap: 0.5rem;"><input type="radio" name="pendidikan" value="Other"> Other: <input type="text" class="form-control" style="padding: 0.25rem 0.5rem; height: auto;"/></label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Pekerjaan <span>*</span></label>
+            <div class="radio-group" style="flex-direction: column;">
+              <label class="radio-label"><input type="radio" name="pekerjaan" value="PNS" required> PNS</label>
+              <label class="radio-label"><input type="radio" name="pekerjaan" value="TNI/POLRI"> TNI/POLRI</label>
+              <label class="radio-label"><input type="radio" name="pekerjaan" value="Pegawai Swasta"> Pegawai Swasta</label>
+              <label class="radio-label"><input type="radio" name="pekerjaan" value="Pelajar/Mahasiswa"> Pelajar/Mahasiswa</label>
+              <label class="radio-label"><input type="radio" name="pekerjaan" value="Wartawan"> Wartawan</label>
+              <label class="radio-label"><input type="radio" name="pekerjaan" value="Wiraswasta"> Wiraswasta</label>
+              <label class="radio-label" style="display: flex; align-items: center; gap: 0.5rem;"><input type="radio" name="pekerjaan" value="Other"> Other: <input type="text" class="form-control" style="padding: 0.25rem 0.5rem; height: auto;"/></label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Jenis Layanan <span>*</span></label>
+            <select class="form-control" required>
+              <option value="">-- Pilih Jenis Layanan --</option>
+              <option value="Bimtek RPPLH">Bimtek RPPLH</option>
+              <option value="Konsultasi RPPLH">Konsultasi RPPLH</option>
+              <option value="Inventarisasi Lingkungan Hidup">Inventarisasi Lingkungan Hidup</option>
+              <option value="Permohonan Data Spasial">Permohonan Data Spasial</option>
+            </select>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-next">Lanjut: Survei Kuesioner <svg fill="none" height="16" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+
+        <!-- Pane 2: Survei Kuesioner -->
+        <div class="form-pane" id="pak-p2">
+          
+          <div style="background: rgba(36,100,36,0.1); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border); margin-bottom: 2rem;">
+            <p style="font-size: 0.85rem; color: var(--gray-200); margin-bottom: 0.5rem;">1. Mohon diisi sesuai dengan keadaan Bapak/Ibu/Saudara (i) yang sebenarnya, karena hal ini tidak mempengaruhi kondite maupun pelayanan terhadap Bapak/ Ibu/saudara (i), dan betul-betul untuk kepentingan ilmiah.</p>
+            <p style="font-size: 0.85rem; color: var(--gray-200); margin-bottom: 0;">2. Cara pengisian Kuesioner Bapak/Ibu/Saudara(i) memberi tanda silang (X) atau lingkaran pada pilihan jawaban yang tersedia sesuai dengan pendapat Bapak/Ibu/Saudara(i).</p>
+          </div>
+
+          <div class="question-group">
+            <div class="question-label">Apakah pernah pelayanan oleh petugas tidak sesuai dengan prosedur dan dipersulit untuk maksud tertentu? (Manipulasi Peraturan) <span>*</span></div>
+            <div class="choice-options" style="flex-direction: column; gap: 0.5rem;">
+              <label class="choice-opt"><input type="radio" name="q1" value="Selalu" required> Selalu</label>
+              <label class="choice-opt"><input type="radio" name="q1" value="Sering"> Sering</label>
+              <label class="choice-opt"><input type="radio" name="q1" value="Jarang"> Jarang</label>
+              <label class="choice-opt"><input type="radio" name="q1" value="Tidak Ada"> Tidak Ada</label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <div class="question-label">Apakah dalam memperoleh layanan secara cepat dan mudah ada penawaran dari petugas untuk meminta imbalan tertentu? (Penyalahgunaan Jabatan) <span>*</span></div>
+            <div class="choice-options" style="flex-direction: column; gap: 0.5rem;">
+              <label class="choice-opt"><input type="radio" name="q2" value="Selalu" required> Selalu</label>
+              <label class="choice-opt"><input type="radio" name="q2" value="Sering"> Sering</label>
+              <label class="choice-opt"><input type="radio" name="q2" value="Jarang"> Jarang</label>
+              <label class="choice-opt"><input type="radio" name="q2" value="Tidak Ada"> Tidak Ada</label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <div class="question-label">Pernahkah dihubungi oleh seseorang (pegawai) yang akan membantu dalam pengurusan surat/berkas? (Menjual Pengaruh) <span>*</span></div>
+            <div class="choice-options" style="flex-direction: column; gap: 0.5rem;">
+              <label class="choice-opt"><input type="radio" name="q3" value="Selalu" required> Selalu</label>
+              <label class="choice-opt"><input type="radio" name="q3" value="Sering"> Sering</label>
+              <label class="choice-opt"><input type="radio" name="q3" value="Jarang"> Jarang</label>
+              <label class="choice-opt"><input type="radio" name="q3" value="Tidak Ada"> Tidak Ada</label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <div class="question-label">Memberikan tanda terima kasih atas layanan yang diterima (meskipun tidak diminta)? (Hadiah) <span>*</span></div>
+            <div class="choice-options" style="flex-direction: column; gap: 0.5rem;">
+              <label class="choice-opt"><input type="radio" name="q4" value="Selalu" required> Selalu</label>
+              <label class="choice-opt"><input type="radio" name="q4" value="Sering"> Sering</label>
+              <label class="choice-opt"><input type="radio" name="q4" value="Jarang"> Jarang</label>
+              <label class="choice-opt"><input type="radio" name="q4" value="Tidak Ada"> Tidak Ada</label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <div class="question-label">Apakah Pernah mengetahui ada praktek percaloan dalam pengurusan layanan? (Percaloan) <span>*</span></div>
+            <div class="choice-options" style="flex-direction: column; gap: 0.5rem;">
+              <label class="choice-opt"><input type="radio" name="q5" value="Selalu" required> Selalu</label>
+              <label class="choice-opt"><input type="radio" name="q5" value="Sering"> Sering</label>
+              <label class="choice-opt"><input type="radio" name="q5" value="Jarang"> Jarang</label>
+              <label class="choice-opt"><input type="radio" name="q5" value="Tidak Ada"> Tidak Ada</label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <div class="question-label">Pernah melihat dan / atau mendengar masih terjadi praktek KKN? (Perbuatan Curang) <span>*</span></div>
+            <div class="choice-options" style="flex-direction: column; gap: 0.5rem;">
+              <label class="choice-opt"><input type="radio" name="q6" value="Selalu" required> Selalu</label>
+              <label class="choice-opt"><input type="radio" name="q6" value="Sering"> Sering</label>
+              <label class="choice-opt"><input type="radio" name="q6" value="Jarang"> Jarang</label>
+              <label class="choice-opt"><input type="radio" name="q6" value="Tidak Ada"> Tidak Ada</label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <div class="question-label">Pernah mengurus keperluan diluar prosedur yang ditetapkan ? (Transaksi Rahasia) <span>*</span></div>
+            <div class="choice-options" style="flex-direction: column; gap: 0.5rem;">
+              <label class="choice-opt"><input type="radio" name="q7" value="Selalu" required> Selalu</label>
+              <label class="choice-opt"><input type="radio" name="q7" value="Sering"> Sering</label>
+              <label class="choice-opt"><input type="radio" name="q7" value="Jarang"> Jarang</label>
+              <label class="choice-opt"><input type="radio" name="q7" value="Tidak Ada"> Tidak Ada</label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-back">← Kembali</button>
+            <button type="button" class="btn-submit" style="background: linear-gradient(135deg, var(--gold-500), var(--gold-400)); color: #000;">Kirim Penilaian</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-success">
+        <div class="success-icon" style="background: var(--gold-400); color: #000;">🛡️</div>
+        <h3>Terima Kasih Atas Partisipasi Anda!</h3>
+        <p>Laporan Anda akan kami jadikan bahan evaluasi penting untuk menjaga komitmen integritas kami.</p>
+        <a href="index.html" class="btn-outline mt-4">Kembali ke Beranda</a>
+      </div>
+    </div>
+  </section>
+
+    <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" style="height:40px; width:auto;"><span class="footer-logo-text">Dit. PSDA Berkelanjutan</span></div>
+          <p class="footer-desc">Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup.</p>
+          <div class="footer-contact"><p>Menara Plaza Kuningan<br>Jl. H.R. Rasuna Said Kav. C11-14 Kuningan, Jakarta Selatan<br><a href="mailto:egis@kemenlh.go.id">egis@kemenlh.go.id</a><br>6282211210700<br>(021) 5720254</p></div>
+        </div>
+        <div class="footer-col"><h5>Tentang</h5><ul><li><a href="tentang.html">Profil Direktorat</a></li><li><a href="tentang.html#visi-misi">Visi &amp; Misi</a></li><li><a href="tentang.html#tupoksi">Tugas &amp; Fungsi</a></li><li><a href="tentang.html#struktur">Struktur Organisasi</a></li></ul></div>
+        <div class="footer-col"><h5>Layanan</h5><ul><li><a href="layanan-rpplh.html">RPPLH</a></li><li><a href="layanan-rpplh.html#bimtek">Bimtek RPPLH</a></li><li><a href="layanan-rpplh.html#konsultasi">Konsultasi RPPLH</a></li><li><a href="https://egis.kemenlh.go.id" target="_blank">Spasial</a></li></ul></div>
+        <div class="footer-col"><h5>Informasi</h5><ul><li><a href="informasi-peraturan.html">Peraturan</a></li><li><a href="informasi-berita.html">Berita</a></li><li><a href="informasi-infografis.html">Infografis</a></li><li><a href="informasi-videografis.html">Videografis</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup</p></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+<script>
+document.querySelector('.btn-submit').addEventListener('click', async () => {
+  const pane1 = document.getElementById('pak-p1');
+  const pane2 = document.getElementById('pak-p2');
+
+  const data = {};
+  
+  // Identitas
+  const inputs = pane1.querySelectorAll('input:not([type="radio"]), select');
+  data.email = inputs[0].value;
+  data.telepon = inputs[1].value;
+  data.jenis_kelamin = pane1.querySelector('input[name="jk"]:checked')?.value;
+  data.usia = inputs[2].value;
+  data.pendidikan = pane1.querySelector('input[name="pendidikan"]:checked')?.value;
+  data.pekerjaan = pane1.querySelector('input[name="pekerjaan"]:checked')?.value;
+  data.jenis_layanan = inputs[3].value;
+
+  // Pertanyaan
+  const radioNames = ['q1','q2','q3','q4','q5','q6','q7'];
+  for (const name of radioNames) {
+    const val = pane2.querySelector(`input[name="${name}"]:checked`)?.value;
+    if (val) data[name] = val;
+  }
+  
+  const btn = document.querySelector('.btn-submit');
+  btn.innerHTML = 'Mengirim...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/api/surveys', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ survey_type: 'antikorupsi', data })
+    });
+    const result = await res.json();
+    if(result.success) {
+      document.querySelector('.form-content').style.display = 'none';
+      document.querySelector('.form-success').style.display = 'block';
+      window.scrollTo({top:0, behavior:'smooth'});
+    } else alert(result.error || 'Gagal mengirim survei');
+  } catch(e) {
+    alert('Terjadi kesalahan jaringan.');
+  }
+
+  btn.innerHTML = 'Kirim Penilaian';
+  btn.disabled = false;
+});
+</script>
+</body>
+</html>
+

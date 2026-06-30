@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baca Berita — Dit. PSDA Berkelanjutan</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo"><img src="assets/images/logo.png" alt="Logo" style="height:32px; width:auto;"></div>
+      <div class="nav-brand-text">
+        <h1>DIREKTORAT PSDAB</h1>
+        <p>Kementerian Lingkungan Hidup / BPLH</p>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="tentang.html">Tentang</a>
+      <div class="has-dropdown">
+        <a>Informasi</a>
+        <div class="dropdown">
+          <a href="informasi-peraturan.html"><span class="dropdown-icon">📜</span>Peraturan</a>
+          <a href="informasi-berita.html"><span class="dropdown-icon">📰</span>Berita</a>
+          <a href="informasi-infografis.html"><span class="dropdown-icon">📊</span>Infografis</a>
+          <a href="informasi-videografis.html"><span class="dropdown-icon">🎬</span>Videografis</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Layanan</a>
+        <div class="dropdown">
+          <a href="layanan-rpplh.html"><span class="dropdown-icon">🌿</span>RPPLH</a>
+          <a href="https://egis.kemenlh.go.id" target="_blank"><span class="dropdown-icon">🗺️</span>Spasial</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Survei</a>
+        <div class="dropdown">
+          <a href="survei-kepuasan.html"><span class="dropdown-icon">⭐</span>Kepuasan Masyarakat</a>
+          <a href="survei-antikorupsi.html"><span class="dropdown-icon">🛡️</span>Persepsi Anti Korupsi</a>
+          <a href="survei-whistleblowing.html"><span class="dropdown-icon">📢</span>Whistle Blowing</a>
+        </div>
+      </div>
+      
+      <button id="themeToggle" aria-label="Toggle Theme" style="background:transparent; border:none; color:var(--white); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; transition:var(--transition);" onmouseover="this.style.background='rgba(128,128,128,0.1)'" onmouseout="this.style.background='transparent'">
+        <span id="themeIcon">☀️</span>
+      </button>
+      <a class="nav-cta" href="tentang.html#kontak">Kontak</a>
+    </div>
+    <button aria-label="Buka menu" class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> <a href="informasi-berita.html">Berita</a> <span>/</span> <span id="breadTitle">Baca Berita</span></div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div style="max-width: 800px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);">
+      <div id="beritaImg" style="width:100%; height:400px; background-size:cover; background-position:center; border-bottom:1px solid rgba(255,255,255,0.05);"></div>
+      <div style="padding: 3rem;">
+        <div id="beritaDate" style="color:var(--gold-300); font-size:0.9rem; font-weight:600; margin-bottom:1rem;"></div>
+        <h1 id="beritaTitle" style="color:var(--white); font-size:2rem; margin-bottom:2rem; line-height:1.3;">Memuat Berita...</h1>
+        <div id="beritaContent" style="color:var(--gray-200); font-size:1.05rem; line-height:1.8; white-space:pre-wrap;"></div>
+      </div>
+    </div>
+  </section>
+
+    <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" style="height:40px; width:auto;"><span class="footer-logo-text">Dit. PSDA Berkelanjutan</span></div>
+          <p class="footer-desc">Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup.</p>
+          <div class="footer-contact"><p>Menara Plaza Kuningan<br>Jl. H.R. Rasuna Said Kav. C11-14 Kuningan, Jakarta Selatan<br><a href="mailto:egis@kemenlh.go.id">egis@kemenlh.go.id</a><br>6282211210700<br>(021) 5720254</p></div>
+        </div>
+        <div class="footer-col"><h5>Tentang</h5><ul><li><a href="tentang.html">Profil Direktorat</a></li><li><a href="tentang.html#visi-misi">Visi &amp; Misi</a></li><li><a href="tentang.html#tupoksi">Tugas &amp; Fungsi</a></li><li><a href="tentang.html#struktur">Struktur Organisasi</a></li></ul></div>
+        <div class="footer-col"><h5>Layanan</h5><ul><li><a href="layanan-rpplh.html">RPPLH</a></li><li><a href="layanan-rpplh.html#bimtek">Bimtek RPPLH</a></li><li><a href="layanan-rpplh.html#konsultasi">Konsultasi RPPLH</a></li><li><a href="https://egis.kemenlh.go.id" target="_blank">Spasial</a></li></ul></div>
+        <div class="footer-col"><h5>Informasi</h5><ul><li><a href="informasi-peraturan.html">Peraturan</a></li><li><a href="informasi-berita.html">Berita</a></li><li><a href="informasi-infografis.html">Infografis</a></li><li><a href="informasi-videografis.html">Videografis</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup</p></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    (async () => {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        if (!id) {
+          document.getElementById('beritaTitle').innerText = 'Berita Tidak Ditemukan';
+          return;
+        }
+
+        const res = await fetch('/api/content?content_type=berita');
+        const data = await res.json();
+        const b = data.find(x => x.id == id);
+        
+        if (!b) {
+          document.getElementById('beritaTitle').innerText = 'Berita Tidak Ditemukan';
+          return;
+        }
+
+        const dt = new Date(b.created_at).toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
+        const imgSrc = b.image ? '/uploads/' + b.image : 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=500&q=80';
+        
+        document.title = b.title + ' — Dit. PSDA Berkelanjutan';
+        document.getElementById('breadTitle').innerText = b.title.substring(0, 30) + '...';
+        document.getElementById('beritaImg').style.backgroundImage = `url('${imgSrc}')`;
+        document.getElementById('beritaDate').innerText = dt;
+        document.getElementById('beritaTitle').innerText = b.title;
+        document.getElementById('beritaContent').innerText = b.description || 'Tidak ada konten.';
+        
+      } catch(e) { 
+        console.error(e); 
+        document.getElementById('beritaTitle').innerText = 'Terjadi Kesalahan';
+      }
+    })();
+  </script>
+</body>
+</html>
+

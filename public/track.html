@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lacak Laporan WBS — Dit. PSDA Berkelanjutan</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+<style>
+    .track-input-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .track-input-group input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--gray-100);
+      font-size: 1rem;
+    }
+    .track-input-group input:focus {
+      outline: none;
+      border-color: var(--gold-400);
+    }
+    .track-input-group button {
+      padding: 0.75rem 2rem;
+    }
+    .track-result-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    .track-result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .track-result-header h3 {
+      font-size: 1.5rem;
+      color: var(--gold-400);
+      margin-bottom: 0.25rem;
+    }
+    .track-result-header p {
+      color: var(--gray-400);
+      font-family: monospace;
+      font-size: 1rem;
+    }
+    .status-badge {
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .status-pending { background: rgba(241, 196, 15, 0.15); color: #f1c40f; }
+    .status-investigating { background: rgba(52, 152, 219, 0.15); color: #3498db; }
+    .status-resolved { background: rgba(46, 204, 113, 0.15); color: #2ecc71; }
+    .status-dismissed { background: rgba(231, 76, 60, 0.15); color: #e74c3c; }
+    
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .track-grid-item {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+    }
+    .track-grid-item p:first-child {
+      font-size: 0.85rem;
+      color: var(--gray-400);
+      margin-bottom: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .track-grid-item p:last-child {
+      font-weight: 600;
+      color: var(--gray-100);
+    }
+    .admin-notes {
+      background: rgba(201, 162, 39, 0.1);
+      border: 1px solid rgba(201, 162, 39, 0.3);
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 2rem;
+    }
+    .admin-notes h4 {
+      color: var(--gold-400);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .timeline-item {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--gray-600);
+    }
+    .timeline-item.admin {
+      background: rgba(52, 152, 219, 0.05);
+      border-left-color: #3498db;
+    }
+    .timeline-sender {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gray-300);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-item.admin .timeline-sender {
+      color: #3498db;
+    }
+    .timeline-msg {
+      color: var(--gray-100);
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-time {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+    }
+    
+    .msg-input {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--gray-100);
+      font-family: inherit;
+      resize: vertical;
+      min-height: 100px;
+      margin-bottom: 1rem;
+    }
+    .msg-input:focus {
+      outline: none;
+      border-color: var(--gold-400);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo"><img src="assets/images/logo.png" alt="Logo" style="height:32px; width:auto;"></div>
+      <div class="nav-brand-text">
+        <h1>DIREKTORAT PSDAB</h1>
+        <p>Kementerian Lingkungan Hidup / BPLH</p>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="tentang.html">Tentang</a>
+      <div class="has-dropdown">
+        <a>Informasi</a>
+        <div class="dropdown">
+          <a href="informasi-peraturan.html"><span class="dropdown-icon">📜</span>Peraturan</a>
+          <a href="informasi-berita.html"><span class="dropdown-icon">📰</span>Berita</a>
+          <a href="informasi-infografis.html"><span class="dropdown-icon">📊</span>Infografis</a>
+          <a href="informasi-videografis.html"><span class="dropdown-icon">🎬</span>Videografis</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Layanan</a>
+        <div class="dropdown">
+          <a href="layanan-rpplh.html"><span class="dropdown-icon">🌿</span>RPPLH</a>
+          <a href="https://egis.kemenlh.go.id" target="_blank"><span class="dropdown-icon">🗺️</span>Spasial</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Survei</a>
+        <div class="dropdown">
+          <a href="survei-kepuasan.html"><span class="dropdown-icon">⭐</span>Kepuasan Masyarakat</a>
+          <a href="survei-antikorupsi.html"><span class="dropdown-icon">🛡️</span>Persepsi Anti Korupsi</a>
+          <a href="survei-whistleblowing.html"><span class="dropdown-icon">📢</span>Whistle Blowing</a>
+        </div>
+      </div>
+      
+      <button id="themeToggle" aria-label="Toggle Theme" style="background:transparent; border:none; color:var(--white); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; transition:var(--transition);" onmouseover="this.style.background='rgba(128,128,128,0.1)'" onmouseout="this.style.background='transparent'">
+        <span id="themeIcon">☀️</span>
+      </button>
+      <a class="nav-cta" href="tentang.html#kontak">Kontak</a>
+    </div>
+    <button aria-label="Buka menu" class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> <a href="survei-whistleblowing.html">Whistle Blowing</a> <span>/</span> <span>Lacak Laporan</span></div>
+      <h1>Lacak Status Laporan</h1>
+      <p>Masukkan nomor tiket registrasi Anda untuk memantau perkembangan dan tindak lanjut laporan WBS.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container" style="max-width: 800px; margin: 0 auto;">
+      
+      <div class="track-input-group fade-up">
+        <input type="text" id="ticketInput" placeholder="Masukkan Nomor Tiket (Misal: WB-XXXX-XXXX)">
+        <button class="btn-primary" onclick="trackReport()">🔍 Lacak Laporan</button>
+      </div>
+
+      <div id="alertBox" class="alert hidden" style="margin-top: 1.5rem; padding: 1rem; border-radius: var(--radius-sm); text-align: center;"></div>
+
+      <div id="trackResult" class="track-result-card hidden fade-up">
+        <div class="track-result-header">
+          <div>
+            <h3 id="resSubject"></h3>
+            <p id="resTicket"></p>
+          </div>
+          <span id="resBadge" class="status-badge"></span>
+        </div>
+
+        <div class="track-grid">
+          <div class="track-grid-item">
+            <p>Kategori Pelanggaran</p>
+            <p id="resCategory"></p>
+          </div>
+          <div class="track-grid-item">
+            <p>Tingkat Keparahan</p>
+            <p id="resSeverity"></p>
+          </div>
+          <div class="track-grid-item">
+            <p>Tanggal Dilaporkan</p>
+            <p id="resDate"></p>
+          </div>
+          <div class="track-grid-item">
+            <p>Pembaruan Terakhir</p>
+            <p id="resUpdated"></p>
+          </div>
+        </div>
+
+        <div id="adminNotesSection" class="admin-notes hidden">
+          <h4> Catatan / Keputusan Admin:</h4>
+          <p id="resAdminNotes" style="color: var(--gray-200); line-height: 1.6;"></p>
+        </div>
+
+        <h4 style="margin-bottom: 1rem; color: var(--green-100); font-size: 1.2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">💬 Log Komunikasi Tindak Lanjut</h4>
+        <div id="messagesArea" class="timeline"></div>
+
+        <div style="margin-top: 2rem;">
+          <textarea class="msg-input" id="newMessage" placeholder="Tulis pesan tambahan, klarifikasi, atau bukti tindak lanjut ke Admin..."></textarea>
+          <button class="btn-primary" onclick="sendMessage()">Kirim Pesan Komunikasi</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+    <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" style="height:40px; width:auto;"><span class="footer-logo-text">Dit. PSDA Berkelanjutan</span></div>
+          <p class="footer-desc">Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup.</p>
+          <div class="footer-contact"><p>Menara Plaza Kuningan<br>Jl. H.R. Rasuna Said Kav. C11-14 Kuningan, Jakarta Selatan<br><a href="mailto:egis@kemenlh.go.id">egis@kemenlh.go.id</a><br>6282211210700<br>(021) 5720254</p></div>
+        </div>
+        <div class="footer-col"><h5>Tentang</h5><ul><li><a href="tentang.html">Profil Direktorat</a></li><li><a href="tentang.html#visi-misi">Visi &amp; Misi</a></li><li><a href="tentang.html#tupoksi">Tugas &amp; Fungsi</a></li><li><a href="tentang.html#struktur">Struktur Organisasi</a></li></ul></div>
+        <div class="footer-col"><h5>Layanan</h5><ul><li><a href="layanan-rpplh.html">RPPLH</a></li><li><a href="layanan-rpplh.html#bimtek">Bimtek RPPLH</a></li><li><a href="layanan-rpplh.html#konsultasi">Konsultasi RPPLH</a></li><li><a href="https://egis.kemenlh.go.id" target="_blank">Spasial</a></li></ul></div>
+        <div class="footer-col"><h5>Informasi</h5><ul><li><a href="informasi-peraturan.html">Peraturan</a></li><li><a href="informasi-berita.html">Berita</a></li><li><a href="informasi-infografis.html">Infografis</a></li><li><a href="informasi-videografis.html">Videografis</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup</p></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    const statusMap = { pending:'Menunggu Verifikasi', investigating:'Dalam Investigasi', resolved:'Selesai / Terbukti', dismissed:'Ditolak / Tidak Terbukti' };
+    const sevMap = { low:'Rendah', medium:'Sedang', high:'Tinggi', critical:'Kritis' };
+    const catMap = { korupsi:'Korupsi / Gratifikasi', fraud:'Fraud / Penipuan', penyuapan:'Penyuapan', penyalahgunaan_wewenang:'Penyalahgunaan Wewenang', pelanggaran_etika:'Pelanggaran Etika', lainnya:'Lainnya' };
+    let currentTicket = '';
+
+    function showAlert(type, msg) {
+      const box = document.getElementById('alertBox');
+      box.style.display = 'block';
+      box.className = 'alert ' + (type === 'error' ? 'alert-error' : 'alert-success');
+      box.style.backgroundColor = type === 'error' ? 'rgba(231, 76, 60, 0.15)' : 'rgba(46, 204, 113, 0.15)';
+      box.style.color = type === 'error' ? '#e74c3c' : '#2ecc71';
+      box.style.border = '1px solid ' + (type === 'error' ? 'rgba(231, 76, 60, 0.3)' : 'rgba(46, 204, 113, 0.3)');
+      box.innerHTML = (type === 'error' ? '❌ ' : '✅ ') + msg;
+      setTimeout(() => { box.style.display = 'none'; }, 5000);
+    }
+
+    function fmtDate(d) { return d ? new Date(d).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}) : '-'; }
+
+    async function trackReport() {
+      const ticket = document.getElementById('ticketInput').value.trim();
+      if (!ticket) return showAlert('error','Silakan masukkan nomor tiket terlebih dahulu.');
+      currentTicket = ticket;
+
+      try {
+        const res = await fetch('/api/reports/track/' + ticket);
+        if (!res.ok) { 
+          showAlert('error','Laporan tidak ditemukan. Periksa kembali nomor tiket Anda.'); 
+          document.getElementById('trackResult').classList.add('hidden'); 
+          return; 
+        }
+        const d = await res.json();
+
+        document.getElementById('alertBox').style.display = 'none';
+        document.getElementById('resSubject').textContent = d.subject;
+        document.getElementById('resTicket').textContent = d.ticket_id;
+        document.getElementById('resCategory').textContent = catMap[d.category] || d.category;
+        document.getElementById('resSeverity').textContent = sevMap[d.severity] || d.severity;
+        document.getElementById('resDate').textContent = fmtDate(d.created_at);
+        document.getElementById('resUpdated').textContent = fmtDate(d.updated_at);
+
+        const badge = document.getElementById('resBadge');
+        badge.textContent = statusMap[d.status] || d.status;
+        badge.className = 'status-badge status-' + d.status;
+
+        if (d.admin_notes) {
+          document.getElementById('resAdminNotes').textContent = d.admin_notes;
+          document.getElementById('adminNotesSection').classList.remove('hidden');
+        } else {
+          document.getElementById('adminNotesSection').classList.add('hidden');
+        }
+
+        const area = document.getElementById('messagesArea');
+        area.innerHTML = d.messages && d.messages.length ? d.messages.map(m =>
+          `<div class="timeline-item ${m.sender==='admin'?'admin':''}">
+            <div class="timeline-sender">${m.sender==='admin'?'🛡️ Investigator (Admin)':'👤 Pelapor (Anda)'}</div>
+            <div class="timeline-msg">${m.message}</div>
+            <div class="timeline-time">${fmtDate(m.created_at)}</div>
+          </div>`
+        ).join('') : '<p style="color:var(--gray-500);font-size:0.9rem;font-style:italic;">Belum ada log komunikasi.</p>';
+
+        document.getElementById('trackResult').classList.remove('hidden');
+      } catch(e) { showAlert('error','Gagal menghubungi server. Silakan coba lagi nanti.'); }
+    }
+
+    async function sendMessage() {
+      const msg = document.getElementById('newMessage').value.trim();
+      if (!msg || !currentTicket) return;
+      try {
+        await fetch('/api/reports/track/' + currentTicket + '/message', {
+          method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:msg})
+        });
+        document.getElementById('newMessage').value = '';
+        trackReport();
+      } catch(e) { showAlert('error','Gagal mengirim pesan.'); }
+    }
+
+    document.getElementById('ticketInput').addEventListener('keydown', e => { if(e.key==='Enter') trackReport(); });
+    const params = new URLSearchParams(location.search);
+    if (params.get('ticket')) { document.getElementById('ticketInput').value = params.get('ticket'); trackReport(); }
+  </script>
+</body>
+</html>
+

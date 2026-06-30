@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Videografis — Dit. PSDA Berkelanjutan</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo"><img src="assets/images/logo.png" alt="Logo" style="height:32px; width:auto;"></div>
+      <div class="nav-brand-text">
+        <h1>DIREKTORAT PSDAB</h1>
+        <p>Kementerian Lingkungan Hidup / BPLH</p>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="tentang.html">Tentang</a>
+      <div class="has-dropdown">
+        <a class="active">Informasi</a>
+        <div class="dropdown">
+          <a href="informasi-peraturan.html"><span class="dropdown-icon">📜</span>Peraturan</a>
+          <a href="informasi-berita.html"><span class="dropdown-icon">📰</span>Berita</a>
+          <a href="informasi-infografis.html"><span class="dropdown-icon">📊</span>Infografis</a>
+          <a href="informasi-videografis.html"><span class="dropdown-icon">🎬</span>Videografis</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Layanan</a>
+        <div class="dropdown">
+          <a href="layanan-rpplh.html"><span class="dropdown-icon">🌿</span>RPPLH</a>
+          <a href="https://egis.kemenlh.go.id" target="_blank"><span class="dropdown-icon">🗺️</span>Spasial</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Survei</a>
+        <div class="dropdown">
+          <a href="survei-kepuasan.html"><span class="dropdown-icon">⭐</span>Kepuasan Masyarakat</a>
+          <a href="survei-antikorupsi.html"><span class="dropdown-icon">🛡️</span>Persepsi Anti Korupsi</a>
+          <a href="survei-whistleblowing.html"><span class="dropdown-icon">📢</span>Whistle Blowing</a>
+        </div>
+      </div>
+      
+      <button id="themeToggle" aria-label="Toggle Theme" style="background:transparent; border:none; color:var(--white); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; transition:var(--transition);" onmouseover="this.style.background='rgba(128,128,128,0.1)'" onmouseout="this.style.background='transparent'">
+        <span id="themeIcon">☀️</span>
+      </button>
+      <a class="nav-cta" href="tentang.html#kontak">Kontak</a>
+    </div>
+    <button aria-label="Buka menu" class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> <span>Informasi</span> <span>/</span> <span>Videografis</span></div>
+      <h1>Videografis</h1>
+      <p>Video edukasi, dokumentasi kegiatan, dan tutorial layanan Direktorat PSDA Berkelanjutan.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div id="videoGrid" class="info-grid">
+      <!-- Placeholder cards shown before API loads -->
+      <div class="info-card fade-up">
+        <div style="background: linear-gradient(135deg, #1a3a2a, #0f2318); height: 180px; margin: -1.5rem -1.5rem 1rem; display:flex; align-items:center; justify-content:center; border-radius: var(--radius-lg) var(--radius-lg) 0 0;">
+          <div style="width:50px;height:50px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center">
+            <div style="width:0;height:0;border-style:solid;border-width:10px 0 10px 16px;border-color:transparent transparent transparent #fff;margin-left:5px"></div>
+          </div>
+        </div>
+        <div class="info-date">Tutorial</div>
+        <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Tata Cara Layanan Bimtek RPPLH</h3>
+        <p style="font-size: 0.85rem; color: var(--gray-300);">Panduan mendaftar layanan Bimbingan Teknis melalui website resmi.</p>
+      </div>
+      <div class="info-card fade-up">
+        <div style="background: linear-gradient(135deg, #1a3a2a, #0f2318); height: 180px; margin: -1.5rem -1.5rem 1rem; display:flex; align-items:center; justify-content:center; border-radius: var(--radius-lg) var(--radius-lg) 0 0;">
+          <div style="width:50px;height:50px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center">
+            <div style="width:0;height:0;border-style:solid;border-width:10px 0 10px 16px;border-color:transparent transparent transparent #fff;margin-left:5px"></div>
+          </div>
+        </div>
+        <div class="info-date">Profil</div>
+        <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Video Profil: Dit. PSDA Berkelanjutan</h3>
+        <p style="font-size: 0.85rem; color: var(--gray-300);">Mengenal peran, visi, misi, serta layanan unggulan Direktorat.</p>
+      </div>
+    </div>
+  </section>
+
+    <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" style="height:40px; width:auto;"><span class="footer-logo-text">Dit. PSDA Berkelanjutan</span></div>
+          <p class="footer-desc">Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup.</p>
+          <div class="footer-contact"><p>Menara Plaza Kuningan<br>Jl. H.R. Rasuna Said Kav. C11-14 Kuningan, Jakarta Selatan<br><a href="mailto:egis@kemenlh.go.id">egis@kemenlh.go.id</a><br>6282211210700<br>(021) 5720254</p></div>
+        </div>
+        <div class="footer-col"><h5>Tentang</h5><ul><li><a href="tentang.html">Profil Direktorat</a></li><li><a href="tentang.html#visi-misi">Visi &amp; Misi</a></li><li><a href="tentang.html#tupoksi">Tugas &amp; Fungsi</a></li><li><a href="tentang.html#struktur">Struktur Organisasi</a></li></ul></div>
+        <div class="footer-col"><h5>Layanan</h5><ul><li><a href="layanan-rpplh.html">RPPLH</a></li><li><a href="layanan-rpplh.html#bimtek">Bimtek RPPLH</a></li><li><a href="layanan-rpplh.html#konsultasi">Konsultasi RPPLH</a></li><li><a href="https://egis.kemenlh.go.id" target="_blank">Spasial</a></li></ul></div>
+        <div class="footer-col"><h5>Informasi</h5><ul><li><a href="informasi-peraturan.html">Peraturan</a></li><li><a href="informasi-berita.html">Berita</a></li><li><a href="informasi-infografis.html">Infografis</a></li><li><a href="informasi-videografis.html">Videografis</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup</p></div>
+    </div>
+  </footer>
+
+  <div id="videoModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:1rem;">
+    <div style="width:100%;max-width:800px;background:#000;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 10px 40px rgba(0,0,0,0.6)">
+      <button onclick="closeVideoModal()" style="position:absolute;top:10px;right:10px;background:var(--primary);color:#fff;border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-weight:bold;z-index:10;display:flex;align-items:center;justify-content:center;">✕</button>
+      <div id="videoModalContent" style="width:100%; aspect-ratio: 16/9;"></div>
+    </div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    function getYouTubeId(url) {
+      const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+      return m ? m[1] : null;
+    }
+
+    window.videoCache = {};
+
+    function openVideoModal(id) {
+      const c = window.videoCache[id];
+      if (!c) return;
+      const modal = document.getElementById('videoModal');
+      const content = document.getElementById('videoModalContent');
+      modal.style.display = 'flex';
+      
+      if (c.file_path) {
+        content.innerHTML = `<video controls autoplay style="width:100%;height:100%;object-fit:cover" src="/uploads/${c.file_path}"></video>`;
+      } else if (c.url) {
+        const yt = getYouTubeId(c.url);
+        if (yt) {
+          content.innerHTML = `<iframe style="width:100%;height:100%;border:0" src="https://www.youtube.com/embed/${yt}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        } else {
+          content.innerHTML = `<a href="${c.url}" target="_blank" style="color:#fff;text-align:center;display:block;padding:2rem;">Buka Tautan Video</a>`;
+        }
+      }
+    }
+
+    function closeVideoModal() {
+      document.getElementById('videoModal').style.display = 'none';
+      document.getElementById('videoModalContent').innerHTML = ''; // Stop video
+    }
+
+    (async () => {
+      try {
+        const res = await fetch('/api/content?content_type=videografis');
+        const data = await res.json();
+        if (!data.length) return;
+        const grid = document.getElementById('videoGrid');
+        const apiCards = data.map(c => {
+          window.videoCache[c.id] = c;
+          let mediaSrc = '';
+          if (c.file_path) {
+            mediaSrc = `<div onclick="openVideoModal(${c.id})" style="cursor:pointer;background:linear-gradient(135deg,#1a3a2a,#0f2318);height:180px;margin:-1.5rem -1.5rem 1rem;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative"><div style="background:var(--primary);color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);font-size:1.5rem">▶</div></div>`;
+          } else if (c.url) {
+            const yt = getYouTubeId(c.url);
+            if (yt) {
+              mediaSrc = `<div onclick="openVideoModal(${c.id})" style="cursor:pointer;background:url(https://img.youtube.com/vi/${yt}/hqdefault.jpg) center/cover;height:180px;margin:-1.5rem -1.5rem 1rem;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:relative"><div style="background:rgba(0,0,0,0.3);position:absolute;top:0;left:0;right:0;bottom:0;border-radius:var(--radius-lg) var(--radius-lg) 0 0"></div><div style="background:var(--primary);color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);font-size:1.5rem;z-index:2">▶</div></div>`;
+            } else {
+              mediaSrc = `<a href="${c.url}" target="_blank" style="display:flex;background:linear-gradient(135deg,#1a3a2a,#0f2318);height:180px;margin:-1.5rem -1.5rem 1rem;align-items:center;justify-content:center;border-radius:var(--radius-lg) var(--radius-lg) 0 0;text-decoration:none;font-size:2rem">▶️</a>`;
+            }
+          } else {
+            mediaSrc = `<div style="background:linear-gradient(135deg,#1a3a2a,#0f2318);height:180px;margin:-1.5rem -1.5rem 1rem;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-lg) var(--radius-lg) 0 0;font-size:3rem"></div>`;
+          }
+          return `<div class="info-card fade-up visible" style="display:flex;flex-direction:column;overflow:hidden">
+            ${mediaSrc}
+            <div class="info-date">Videografis</div>
+            <h3 style="font-size:1.1rem;margin-bottom:0.5rem;cursor:pointer" onclick="if(${c.url && !getYouTubeId(c.url) ? 'false' : 'true'}) openVideoModal(${c.id})">${c.title}</h3>
+            <p style="font-size:0.85rem;color:var(--gray-300);flex-grow:1">${c.description || ''}</p>
+          </div>`;
+        }).join('');
+        grid.innerHTML = apiCards;
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>
+
+

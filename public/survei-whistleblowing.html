@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whistle Blowing System — Dit. PSDA Berkelanjutan</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo"><img src="assets/images/logo.png" alt="Logo" style="height:32px; width:auto;"></div>
+      <div class="nav-brand-text">
+        <h1>DIREKTORAT PSDAB</h1>
+        <p>Kementerian Lingkungan Hidup / BPLH</p>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="tentang.html">Tentang</a>
+      <div class="has-dropdown">
+        <a>Informasi</a>
+        <div class="dropdown">
+          <a href="informasi-peraturan.html"><span class="dropdown-icon">📜</span>Peraturan</a>
+          <a href="informasi-berita.html"><span class="dropdown-icon">📰</span>Berita</a>
+          <a href="informasi-infografis.html"><span class="dropdown-icon">📊</span>Infografis</a>
+          <a href="informasi-videografis.html"><span class="dropdown-icon">🎬</span>Videografis</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Layanan</a>
+        <div class="dropdown">
+          <a href="layanan-rpplh.html"><span class="dropdown-icon">🌿</span>RPPLH</a>
+          <a href="https://egis.kemenlh.go.id" target="_blank"><span class="dropdown-icon">🗺️</span>Spasial</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a class="active">Survei</a>
+        <div class="dropdown">
+          <a href="survei-kepuasan.html"><span class="dropdown-icon">⭐</span>Kepuasan Masyarakat</a>
+          <a href="survei-antikorupsi.html"><span class="dropdown-icon">🛡️</span>Persepsi Anti Korupsi</a>
+          <a href="survei-whistleblowing.html"><span class="dropdown-icon">📢</span>Whistle Blowing</a>
+        </div>
+      </div>
+      
+      <button id="themeToggle" aria-label="Toggle Theme" style="background:transparent; border:none; color:var(--white); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; transition:var(--transition);" onmouseover="this.style.background='rgba(128,128,128,0.1)'" onmouseout="this.style.background='transparent'">
+        <span id="themeIcon">☀️</span>
+      </button>
+      <a class="nav-cta" href="tentang.html#kontak">Kontak</a>
+    </div>
+    <button aria-label="Buka menu" class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> <span>Survei</span> <span>/</span> <span>Whistle Blowing</span></div>
+      <h1>Whistle Blowing System (WBS)</h1>
+      <p>Saluran pelaporan dugaan pelanggaran, penyalahgunaan wewenang, atau tindak pidana korupsi yang dilakukan oleh pegawai Direktorat PSDA Berkelanjutan secara rahasia dan aman.</p>
+    </div>
+  </div>
+
+  <section class="section">
+
+    <div class="wbs-info-grid fade-up">
+      <div class="wbs-info-card">
+        <div class="icon">🔒</div>
+        <h4>Kerahasiaan Terjamin</h4>
+        <p>Identitas pelapor akan kami rahasiakan dan enkripsi sepenuhnya.</p>
+      </div>
+      <div class="wbs-info-card">
+        <div class="icon">🛡️</div>
+        <h4>Perlindungan Hukum</h4>
+        <p>Pelapor beritikad baik dilindungi oleh peraturan perundang-undangan.</p>
+      </div>
+      <div class="wbs-info-card">
+        <div class="icon">⚖️</div>
+        <h4>Tindak Lanjut Cepat</h4>
+        <p>Setiap laporan yang masuk akan diverifikasi dan ditindaklanjuti.</p>
+      </div>
+      <div class="wbs-info-card">
+        <div class="icon">🔍</div>
+        <h4>Transparansi Proses</h4>
+        <p>Anda dapat memantau status laporan menggunakan nomor resi unik.</p>
+      </div>
+    </div>
+
+    <div class="survei-form fade-up" id="formWhistle">
+      <div class="form-content">
+        <h3>Formulir Pelaporan (WBS)</h3>
+        
+        <!-- Success Result (hidden by default) -->
+        <div id="successResult" class="hidden" style="text-align: center; padding: 2rem;">
+          <div class="success-icon" style="background: linear-gradient(135deg, #eb0404, #eb0404);">🛡️</div>
+          <h3>Laporan Anda</h3>
+          <p>Laporan Anda telah terekam aman di dalam sistem kami dengan Nomor Registrasi / Tiket:</p>
+          <div id="ticketIdResult" style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: var(--radius-sm); font-family: monospace; font-size: 1.5rem; letter-spacing: 2px; font-weight: bold; margin: 1.5rem auto; max-width: 300px; color: var(--gold-300);">
+            TICKET-ID
+          </div>
+          <p style="font-size: 0.9rem; color: var(--gray-300);">Harap simpan nomor tiket di atas untuk memantau status tindak lanjut laporan Anda (menu Lacak Laporan).</p>
+          <div style="margin-top: 2rem;">
+            <a href="/track.html" class="btn-primary">🔍 Lacak Laporan</a>
+            <a href="index.html" class="btn-outline" style="margin-left: 10px;">Kembali ke Beranda</a>
+          </div>
+        </div>
+
+        <div class="form-pane active" id="reportFormContainer">
+          <div id="alertBox" class="alert hidden" style="padding:1rem; margin-bottom:1rem; border-radius:4px; text-align:center;"></div>
+          
+          <form id="reportForm">
+            <div class="question-group mt-4">
+              <label style="display:block; font-size:0.9rem; font-weight:600; margin-bottom:0.5rem; color:var(--green-200);">Kategori Pelanggaran <span style="color:red">*</span></label>
+              <select class="form-control" name="category" id="category" required>
+                <option value="">-- Pilih Kategori --</option>
+                <option value="korupsi">Korupsi / Gratifikasi</option>
+                <option value="fraud">Fraud / Penipuan</option>
+                <option value="penyuapan">Penyuapan</option>
+                <option value="penyalahgunaan_wewenang">Penyalahgunaan Wewenang</option>
+                <option value="pelanggaran_etika">Pelanggaran Etika / Disiplin</option>
+                <option value="lainnya">Lainnya</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Subjek Laporan <span style="color:red">*</span></label>
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Ringkasan singkat pelanggaran (misal: Pungli di Layanan X)" required>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label>Tingkat Keparahan</label>
+                <select class="form-control" name="severity" id="severity">
+                  <option value="low">Rendah</option>
+                  <option value="medium" selected>Sedang</option>
+                  <option value="high">Tinggi</option>
+                  <option value="critical">Kritis</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Tanggal / Waktu Kejadian</label>
+                <input type="date" class="form-control" name="date_incident" id="dateIncident">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Tempat/Lokasi Kejadian</label>
+              <input type="text" class="form-control" name="location" id="location" placeholder="Lokasi spesifik kejadian">
+            </div>
+
+            <div class="form-group">
+              <label>Uraian Kronologis Kejadian <span style="color:red">*</span></label>
+              <p style="font-size: 0.8rem; color: var(--gray-400); margin-bottom: 0.5rem;">Jelaskan secara detail: siapa yang terlibat, kapan, dimana, dan bagaimana.</p>
+              <textarea class="form-control" name="description" id="description" placeholder="Tuliskan uraian detail kejadian..." rows="6" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Lampirkan Bukti Pendukung</label>
+              <p style="font-size: 0.8rem; color: var(--gray-400); margin-bottom: 0.5rem;">Foto, dokumen PDF, rekaman, dll. Maks. 5 File, 10 MB/file.</p>
+              <div class="upload-area" id="fileUploadArea" style="cursor: pointer; border: 2px dashed var(--border); padding: 2rem; text-align: center; border-radius: var(--radius-md);">
+                <div class="upload-icon" style="font-size: 2rem; margin-bottom: 0.5rem;">📎</div>
+                <p>Klik atau seret file bukti ke sini</p>
+                <input type="file" id="fileInput" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.mp3,.mp4" style="display: none;">
+              </div>
+              <div class="file-list" id="fileList" style="margin-top: 1rem;"></div>
+            </div>
+
+            <div class="form-group mt-4">
+              <label class="radio-label" style="max-width:100%; flex:none; background: rgba(0,0,0,0.3);">
+                <input type="checkbox" required /> Saya menyatakan bahwa laporan ini didasarkan pada itikad baik dan informasi yang sebenarnya.
+              </label>
+            </div>
+
+            <div class="form-actions mt-4">
+              <button type="submit" class="btn-submit" id="submitBtn" style="width:100%; justify-content:center; background: linear-gradient(135deg, #a72828, #d83d3d); color: white;">🚨 Kirim Laporan Anonim</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" style="height:40px; width:auto;"><span class="footer-logo-text">Dit. PSDA Berkelanjutan</span></div>
+          <p class="footer-desc">Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup.</p>
+          <div class="footer-contact"><p>Menara Plaza Kuningan<br>Jl. H.R. Rasuna Said Kav. C11-14 Kuningan, Jakarta Selatan<br><a href="mailto:egis@kemenlh.go.id">egis@kemenlh.go.id</a><br>6282211210700<br>(021) 5720254</p></div>
+        </div>
+        <div class="footer-col"><h5>Tentang</h5><ul><li><a href="tentang.html">Profil Direktorat</a></li><li><a href="tentang.html#visi-misi">Visi &amp; Misi</a></li><li><a href="tentang.html#tupoksi">Tugas &amp; Fungsi</a></li><li><a href="tentang.html#struktur">Struktur Organisasi</a></li></ul></div>
+        <div class="footer-col"><h5>Layanan</h5><ul><li><a href="layanan-rpplh.html">RPPLH</a></li><li><a href="layanan-rpplh.html#bimtek">Bimtek RPPLH</a></li><li><a href="layanan-rpplh.html#konsultasi">Konsultasi RPPLH</a></li><li><a href="https://egis.kemenlh.go.id" target="_blank">Spasial</a></li></ul></div>
+        <div class="footer-col"><h5>Informasi</h5><ul><li><a href="informasi-peraturan.html">Peraturan</a></li><li><a href="informasi-berita.html">Berita</a></li><li><a href="informasi-infografis.html">Infografis</a></li><li><a href="informasi-videografis.html">Videografis</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup</p></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    // File upload logic
+    const fileInput = document.getElementById('fileInput');
+    const fileUploadArea = document.getElementById('fileUploadArea');
+    const fileList = document.getElementById('fileList');
+    let selectedFiles = [];
+
+    fileUploadArea.addEventListener('click', () => fileInput.click());
+    fileUploadArea.addEventListener('dragover', e => { e.preventDefault(); fileUploadArea.style.borderColor = 'var(--gold-400)'; });
+    fileUploadArea.addEventListener('dragleave', () => { fileUploadArea.style.borderColor = 'var(--border)'; });
+    fileUploadArea.addEventListener('drop', e => {
+      e.preventDefault();
+      fileUploadArea.style.borderColor = 'var(--border)';
+      addFiles(e.dataTransfer.files);
+    });
+    fileInput.addEventListener('change', () => addFiles(fileInput.files));
+
+    function addFiles(files) {
+      for (const f of files) {
+        if (selectedFiles.length >= 5) break;
+        if (f.size > 10*1024*1024) { alert('File ' + f.name + ' terlalu besar (maks 10MB)'); continue; }
+        selectedFiles.push(f);
+      }
+      renderFiles();
+    }
+
+    function renderFiles() {
+      fileList.innerHTML = selectedFiles.map((f,i) => 
+        `<div style="display:flex; justify-content:space-between; padding:0.5rem; background:rgba(255,255,255,0.05); margin-bottom:0.5rem; border-radius:4px;">
+          <span>📄 ${f.name} (${(f.size/1024).toFixed(1)} KB)</span>
+          <span style="cursor:pointer; color:red;" onclick="removeFile(${i})">✕</span>
+        </div>`
+      ).join('');
+    }
+
+    function removeFile(i) { selectedFiles.splice(i,1); renderFiles(); }
+
+    function showAlert(type, msg) {
+      const box = document.getElementById('alertBox');
+      box.style.display = 'block';
+      box.className = 'alert ' + (type === 'error' ? 'alert-error' : 'alert-success');
+      box.style.backgroundColor = type === 'error' ? '#ffdada' : '#daffdf';
+      box.style.color = type === 'error' ? '#a72828' : '#28a745';
+      box.innerHTML = (type === 'error' ? '❌ ' : '✅ ') + msg;
+      setTimeout(() => { box.style.display = 'none'; }, 5000);
+    }
+
+    document.getElementById('reportForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = 'Mengirim...';
+
+      const formData = new FormData();
+      formData.append('category', document.getElementById('category').value);
+      formData.append('subject', document.getElementById('subject').value);
+      formData.append('description', document.getElementById('description').value);
+      formData.append('severity', document.getElementById('severity').value);
+      formData.append('location', document.getElementById('location').value);
+      formData.append('date_incident', document.getElementById('dateIncident').value);
+      selectedFiles.forEach(f => formData.append('attachments', f));
+
+      try {
+        const res = await fetch('/api/reports', { method: 'POST', body: formData });
+        const data = await res.json();
+        
+        if (data.success) {
+          document.getElementById('ticketIdResult').textContent = data.ticket_id;
+          document.getElementById('reportFormContainer').style.display = 'none';
+          document.getElementById('successResult').classList.remove('hidden');
+          document.getElementById('successResult').style.display = 'block';
+          window.scrollTo({top: 0, behavior: 'smooth'});
+        } else {
+          showAlert('error', data.error || 'Gagal mengirim laporan');
+        }
+      } catch(err) {
+        showAlert('error', 'Terjadi kesalahan jaringan atau server tidak merespon.');
+      }
+      
+      btn.disabled = false;
+      btn.innerHTML = '🚨 Kirim Laporan Anonim';
+    });
+  </script>
+  </section>
+
+  <footer>
+    <div class="footer-inner"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" style="height:40px; width:auto;"><span class="footer-logo-text">Dit. PSDA Berkelanjutan</span></div></div></div><div class="footer-bottom"><p>© 2026 Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan</p></div></div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
+

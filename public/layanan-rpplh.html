@@ -1,0 +1,748 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Layanan RPPLH - Bimbingan Teknis dan Konsultasi RPPLH Direktorat PSDA Berkelanjutan"/>
+  <title>Layanan RPPLH — Dit. PSDA Berkelanjutan</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+<style>
+    /* Extra styles for this page */
+    .rpplh-hero-cards { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2rem; }
+    .rpplh-hero-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem; backdrop-filter:blur(20px); transition:var(--transition); cursor:pointer; }
+    .rpplh-hero-card:hover { border-color:var(--green-400); transform:translateY(-4px); }
+    .rpplh-hero-card.active-card { border-color:var(--gold-400); background:rgba(201,162,39,0.1); }
+    .rpplh-hero-card h3 { font-size:1.1rem; font-weight:700; margin-bottom:0.5rem; }
+    .rpplh-hero-card p { font-size:0.82rem; color:var(--gray-300); line-height:1.5; }
+    .rpplh-hero-card .card-num { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--green-300); margin-bottom:0.5rem; }
+    @media(max-width:600px){ .rpplh-hero-cards{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+<!-- ── NAV ── -->
+<nav>
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo"><img src="assets/images/logo.png" alt="Logo" style="height:32px; width:auto;"></div>
+      <div class="nav-brand-text">
+        <h1>DIREKTORAT PSDAB</h1>
+        <p>Kementerian Lingkungan Hidup / BPLH</p>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="tentang.html">Tentang</a>
+      <div class="has-dropdown">
+        <a>Informasi</a>
+        <div class="dropdown">
+          <a href="informasi-peraturan.html"><span class="dropdown-icon">📜</span>Peraturan</a>
+          <a href="informasi-berita.html"><span class="dropdown-icon">📰</span>Berita</a>
+          <a href="informasi-infografis.html"><span class="dropdown-icon">📊</span>Infografis</a>
+          <a href="informasi-videografis.html"><span class="dropdown-icon">🎬</span>Videografis</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a class="active">Layanan</a>
+        <div class="dropdown">
+          <a href="layanan-rpplh.html"><span class="dropdown-icon">🌿</span>RPPLH</a>
+          <a href="https://egis.kemenlh.go.id" target="_blank"><span class="dropdown-icon">🗺️</span>Spasial</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Survei</a>
+        <div class="dropdown">
+          <a href="survei-kepuasan.html"><span class="dropdown-icon">⭐</span>Kepuasan Masyarakat</a>
+          <a href="survei-antikorupsi.html"><span class="dropdown-icon">🛡️</span>Persepsi Anti Korupsi</a>
+          <a href="survei-whistleblowing.html"><span class="dropdown-icon">📢</span>Whistle Blowing</a>
+        </div>
+      </div>
+      
+      <button id="themeToggle" aria-label="Toggle Theme" style="background:transparent; border:none; color:var(--white); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; transition:var(--transition);" onmouseover="this.style.background='rgba(128,128,128,0.1)'" onmouseout="this.style.background='transparent'">
+        <span id="themeIcon">☀️</span>
+      </button>
+      <a class="nav-cta" href="tentang.html#kontak">Kontak</a>
+    </div>
+    <button aria-label="Buka menu" class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+<!-- Mobile Drawer -->
+<div class="nav-drawer" id="navDrawer">
+    <a class="drawer-item" href="index.html">Beranda</a>
+    <a class="drawer-item" href="tentang.html">Tentang</a>
+    <div class="drawer-group-label">Informasi</div>
+    <div class="drawer-sub">
+      <a href="informasi-peraturan.html">📜 Peraturan</a>
+      <a href="informasi-berita.html">📰 Berita</a>
+      <a href="informasi-infografis.html">📊 Infografis</a>
+      <a href="informasi-videografis.html">🎬 Videografis</a>
+    </div>
+    <div class="drawer-group-label">Layanan</div>
+    <div class="drawer-sub">
+      <a href="layanan-rpplh.html">🌿 RPPLH</a>
+      <a href="https://egis.kemenlh.go.id" target="_blank">🗺️ Spasial</a>
+    </div>
+    <div class="drawer-group-label">Survei</div>
+    <div class="drawer-sub">
+      <a href="survei-kepuasan.html">⭐ Kepuasan Masyarakat</a>
+      <a href="survei-antikorupsi.html">🛡️ Anti Korupsi</a>
+      <a href="survei-whistleblowing.html">📢 Whistle Blowing</a>
+    </div>
+    <a class="drawer-cta" href="tentang.html#kontak">Kontak</a>
+  </div>
+
+  <!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Beranda</a><span>/</span><span>Layanan</span><span>/</span><span>RPPLH</span></div>
+    <h1>Layanan RPPLH</h1>
+    <p>Bimbingan teknis dan konsultasi penyusunan Rencana Perlindungan dan Pengelolaan Lingkungan Hidup (RPPLH) untuk Pemerintah Daerah.</p>
+    <div class="rpplh-hero-cards">
+      <div class="rpplh-hero-card active-card" onclick="switchRpplhTab('bimtek')" id="cardBimtek">
+        <div class="card-num">🎓 Layanan 01</div>
+        <h3>Bimtek RPPLH</h3>
+        <p>Bimbingan teknis penyusunan RPPLH untuk meningkatkan kapasitas Pemerintah Daerah.</p>
+      </div>
+      <div class="rpplh-hero-card" onclick="switchRpplhTab('konsultasi')" id="cardKonsultasi">
+        <div class="card-num">💬 Layanan 02</div>
+        <h3>Konsultasi RPPLH</h3>
+        <p>Konsultasi teknis penyusunan RPPLH disertai surat saran dan masukan resmi dari Direktorat.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="section">
+
+  <!-- TABS -->
+  <div class="rpplh-tabs">
+    <button class="rpplh-tab active" data-tab="bimtek">🎓 Bimtek RPPLH</button>
+    <button class="rpplh-tab" data-tab="konsultasi">💬 Konsultasi RPPLH</button>
+  </div>
+
+  <!-- ═══ PANEL BIMTEK ═══ -->
+  <div class="rpplh-panel active" id="bimtek">
+
+    <!-- FLOW STEPS -->
+    <div class="flow-section">
+      <h3>Alur Layanan Bimtek RPPLH</h3>
+      <p>Proses pendaftaran dan pelaksanaan Bimbingan Teknis RPPLH dari permohonan hingga pelaksanaan kegiatan.</p>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <h4>Pilih Jenis Pemda</h4>
+          <p>Pilih jenis pemerintah daerah: Pemda Provinsi atau Pemda Kabupaten/Kota</p>
+          <span class="flow-step-badge">User</span>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <h4>Isi Data Diri</h4>
+          <p>Lengkapi identitas pemohon, instansi, jabatan, dan informasi kontak</p>
+          <span class="flow-step-badge">User</span>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <h4>Upload Dokumen</h4>
+          <p>Unggah Surat Permohonan resmi dan Data SLHD (Status Lingkungan Hidup Daerah)</p>
+          <span class="flow-step-badge">User</span>
+        </div>
+        <div class="flow-step admin">
+          <div class="flow-step-num">⚙️</div>
+          <h4>Verifikasi Admin</h4>
+          <p>Tim Direktorat memverifikasi kelengkapan dokumen dan data pemohon</p>
+          <span class="flow-step-badge">Admin</span>
+        </div>
+        <div class="flow-step admin">
+          <div class="flow-step-num">📩</div>
+          <h4>Surat Balasan</h4>
+          <p>Admin mengirimkan surat balasan beserta jadwal pelaksanaan (lokasi/offline atau link Zoom/online)</p>
+          <span class="flow-step-badge">Admin</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PELAKSANAAN INFO -->
+    <div class="layanan-grid" style="margin-bottom:3rem">
+      <div class="layanan-card">
+        <div class="card-icon">🏢</div>
+        <div class="card-tag">Bimtek Offline</div>
+        <div class="card-title">Pelaksanaan Tatap Muka</div>
+        <div class="card-desc">Bimtek dilaksanakan di lokasi yang telah ditentukan. Admin akan menginformasikan alamat lengkap, tanggal, dan waktu pelaksanaan melalui surat balasan resmi.</div>
+      </div>
+      <div class="layanan-card">
+        <div class="card-icon">💻</div>
+        <div class="card-tag">Bimtek Online</div>
+        <div class="card-title">Pelaksanaan Virtual (Zoom)</div>
+        <div class="card-desc">Bimtek dilaksanakan secara daring menggunakan platform Zoom. Link meeting dan ID/passcode akan disampaikan melalui surat balasan resmi.</div>
+      </div>
+    </div>
+
+    <!-- FORM BIMTEK -->
+    <div class="form-section" id="formBimtek">
+      <div class="form-content">
+        <h3>📭 Formulir Pendaftaran Bimtek RPPLH</h3>
+        <p>Lengkapi seluruh data berikut untuk mendaftarkan permohonan Bimbingan Teknis RPPLH</p>
+
+        <div class="form-alert form-alert-info">
+          <!-- <span class="form-alert-icon">ℹ️</span> -->
+          <span>Pastikan dokumen yang diunggah adalah dokumen resmi yang telah ditandatangani dan dicap oleh pejabat berwenang. Proses verifikasi memerlukan waktu 3-5 hari kerja.</span>
+        </div>
+
+        <!-- Step Indicators -->
+        <div class="form-steps-bar">
+          <div class="form-step-indicator active">1· Jenis Pemda</div>
+          <div class="form-step-indicator">2· Data Diri</div>
+          <div class="form-step-indicator">3· Upload Dokumen</div>
+        </div>
+
+        <!-- Pane 1: Pilih Jenis Pemda -->
+        <div class="form-pane active" id="bimtek-p1">
+          <div class="form-group">
+            <label>Jenis Pemerintah Daerah <span>*</span></label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="jenis_pemda_bimtek" value="provinsi" required />Pemda Provinsi
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="jenis_pemda_bimtek" value="kabkota" />Pemda Kabupaten/Kota
+              </label>
+            </div>
+          </div>
+          <div class="form-group" id="bimtek-wilayah-provinsi" style="display:none">
+            <label>Provinsi <span>*</span></label>
+            <select class="form-control" name="provinsi_bimtek">
+              <option value="">-- Pilih Provinsi --</option>
+              <option>Aceh</option><option>Sumatera Utara</option><option>Sumatera Barat</option><option>Riau</option><option>Jambi</option><option>Sumatera Selatan</option><option>Bengkulu</option><option>Lampung</option><option>Bangka Belitung</option><option>Kepulauan Riau</option><option>DKI Jakarta</option><option>Jawa Barat</option><option>Jawa Tengah</option><option>DI Yogyakarta</option><option>Jawa Timur</option><option>Banten</option><option>Bali</option><option>Nusa Tenggara Barat</option><option>Nusa Tenggara Timur</option><option>Kalimantan Barat</option><option>Kalimantan Tengah</option><option>Kalimantan Selatan</option><option>Kalimantan Timur</option><option>Kalimantan Utara</option><option>Sulawesi Utara</option><option>Sulawesi Tengah</option><option>Sulawesi Selatan</option><option>Sulawesi Tenggara</option><option>Gorontalo</option><option>Sulawesi Barat</option><option>Maluku</option><option>Maluku Utara</option><option>Papua Barat</option><option>Papua</option><option>Papua Selatan</option><option>Papua Tengah</option><option>Papua Pegunungan</option><option>Papua Barat Daya</option>
+            </select>
+          </div>
+          <div class="form-group" id="bimtek-wilayah-kabkota" style="display:none">
+            <div class="form-grid-2">
+              <div class="form-group" style="margin-bottom:0">
+                <label>Provinsi <span>*</span></label>
+                <select class="form-control" name="provinsi_bimtek_kk">
+                  <option value="">-- Pilih Provinsi --</option>
+                  <option>Aceh</option><option>Sumatera Utara</option><option>Sumatera Barat</option><option>Riau</option><option>Jambi</option><option>Sumatera Selatan</option><option>Bengkulu</option><option>Lampung</option><option>Bangka Belitung</option><option>Kepulauan Riau</option><option>DKI Jakarta</option><option>Jawa Barat</option><option>Jawa Tengah</option><option>DI Yogyakarta</option><option>Jawa Timur</option><option>Banten</option><option>Bali</option><option>Nusa Tenggara Barat</option><option>Nusa Tenggara Timur</option><option>Kalimantan Barat</option><option>Kalimantan Tengah</option><option>Kalimantan Selatan</option><option>Kalimantan Timur</option><option>Kalimantan Utara</option><option>Sulawesi Utara</option><option>Sulawesi Tengah</option><option>Sulawesi Selatan</option><option>Sulawesi Tenggara</option><option>Gorontalo</option><option>Sulawesi Barat</option><option>Maluku</option><option>Maluku Utara</option><option>Papua Barat</option><option>Papua</option><option>Papua Selatan</option><option>Papua Tengah</option><option>Papua Pegunungan</option><option>Papua Barat Daya</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom:0">
+                <label>Kabupaten/Kota <span>*</span></label>
+                <input class="form-control" type="text" name="kabkota_bimtek" placeholder="Nama Kabupaten/Kota" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Metode Pelaksanaan yang Diinginkan <span>*</span></label>
+            <select class="form-control" name="metode_bimtek" required>
+              <option value="">-- Pilih Metode --</option>
+              <option value="offline">🏢 Offline (Tatap Muka)</option>
+              <option value="online">💻 Online (Zoom)</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-next">Lanjut: Data Diri <svg fill="none" height="16" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+
+        <!-- Pane 2: Data Diri -->
+        <div class="form-pane" id="bimtek-p2">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Nama Lengkap <span>*</span></label>
+              <input class="form-control" type="text" placeholder="Nama lengkap pemohon" required />
+            </div>
+            <div class="form-group">
+              <label>NIP <span>*</span></label>
+              <input class="form-control" type="text" placeholder="Nomor Induk Pegawai" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required />
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Jabatan <span>*</span></label>
+              <input class="form-control" type="text" placeholder="Jabatan / posisi" required />
+            </div>
+            <div class="form-group">
+              <label>Instansi/Dinas <span>*</span></label>
+              <input class="form-control" type="text" placeholder="Nama instansi/dinas" required />
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>No. HP/WhatsApp <span>*</span></label>
+              <input class="form-control" type="text" placeholder="08xxxxxxxxxx" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required />
+            </div>
+            <div class="form-group">
+              <label>Email Resmi <span>*</span></label>
+              <input class="form-control" type="email" placeholder="email@instansi.go.id" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Alamat Instansi</label>
+            <textarea class="form-control" placeholder="Alamat lengkap instansi" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Kebutuhan/Topik Bimtek <span>*</span></label>
+            <textarea class="form-control" placeholder="Jelaskan kebutuhan dan topik yang ingin dicakup dalam Bimtek RPPLH" rows="3" required></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-back">← Kembali</button>
+            <button type="button" class="btn-next">Lanjut: Upload Dokumen <svg fill="none" height="16" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+
+        <!-- Pane 3: Upload Dokumen -->
+        <div class="form-pane" id="bimtek-p3">
+          <div class="form-alert form-alert-warning">
+            <!-- <span class="form-alert-icon">⚠️</span> -->
+            <span>Dokumen harus dalam format PDF dengan ukuran maksimal 5 MB per file. Pastikan dokumen telah ditandatangani dan dicap basah oleh pejabat berwenang.</span>
+          </div>
+          <div class="form-group">
+            <label>Surat Permohonan Bimtek RPPLH <span>*</span></label>
+            <p style="font-size:0.8rem;color:var(--gray-400);margin-bottom:0.75rem">Surat resmi dari Kepala Dinas/OPD yang membidangi lingkungan hidup ditujukan kepada Direktur PSDA Berkelanjutan</p>
+            <div class="upload-area">
+              <input type="file" accept=".pdf,.doc,.docx" />
+              <div class="upload-icon">📄</div>
+              <p>Klik atau seret file ke sini</p>
+              <span>PDF, DOC, DOCX — Maks. 5 MB</span>
+              <div class="upload-list"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Data SLHD (Status Lingkungan Hidup Daerah) <span>*</span></label>
+            <p style="font-size:0.8rem;color:var(--gray-400);margin-bottom:0.75rem">Dokumen SLHD tahun terakhir atau ringkasan data kondisi lingkungan hidup daerah</p>
+            <div class="upload-area">
+              <input type="file" accept=".pdf,.xlsx,.xls,.doc,.docx" />
+              <div class="upload-icon"></div>
+              <p>Klik atau seret file ke sini</p>
+              <span>PDF, Excel, DOC — Maks. 5 MB</span>
+              <div class="upload-list"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Konfirmasi Persetujuan</label>
+            <label class="radio-label" style="max-width:100%;flex:none">
+              <input type="checkbox" required /> Saya menyatakan bahwa seluruh informasi yang disampaikan adalah benar dan dokumen yang diunggah adalah dokumen resmi yang sah.
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-back">← Kembali</button>
+            <button type="button" class="btn-submit">Kirim Permohonan</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="form-success">
+        <div class="success-icon">✅</div>
+        <h3>Permohonan Bimtek RPPLH Berhasil Dikirim!</h3>
+        <p>Terima kasih. Permohonan Anda telah terekam di sistem kami dengan Nomor Tiket / Registrasi berikut:</p>
+        <div class="ticket-id-display" style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: var(--radius-sm); font-family: monospace; font-size: 1.5rem; letter-spacing: 2px; font-weight: bold; margin: 1.5rem auto; max-width: 300px; color: var(--gold-300);">
+          TICKET-ID
+        </div>
+        <p style="font-size:0.9rem; color:var(--gray-300);">Harap simpan nomor tiket di atas. Anda dapat memantau status persetujuan, jadwal, surat balasan, dan link zoom melalui halaman Lacak Layanan.</p>
+        <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <a class="btn-primary" href="lacak-layanan.html">🔍 Lacak Layanan</a>
+          <a class="btn-outline" href="survei-kepuasan.html">Isi Survei Kepuasan</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PANEL KONSULTASI ═══ -->
+  <div class="rpplh-panel" id="konsultasi">
+
+    <!-- FLOW STEPS -->
+    <div class="flow-section">
+      <h3>Alur Layanan Konsultasi RPPLH</h3>
+      <p>Proses konsultasi teknis RPPLH dari permohonan hingga penerimaan Surat Saran dan Masukan resmi dari Direktorat.</p>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <h4>Pilih Jenis Pemda</h4>
+          <p>Pilih jenis pemerintah daerah: Pemda Provinsi atau Pemda Kabupaten/Kota</p>
+          <span class="flow-step-badge">User</span>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <h4>Isi Data Diri</h4>
+          <p>Lengkapi identitas pemohon, instansi, jabatan, dan informasi kontak</p>
+          <span class="flow-step-badge">User</span>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <h4>Upload Dokumen</h4>
+          <p>Unggah Surat Permohonan dan Materi Teknis RPPLH yang telah disusun</p>
+          <span class="flow-step-badge">User</span>
+        </div>
+        <div class="flow-step admin">
+          <div class="flow-step-num">⚙️</div>
+          <h4>Verifikasi &amp; Jadwal</h4>
+          <p>Admin memverifikasi dan mengirimkan surat balasan + jadwal (lokasi/Zoom)</p>
+          <span class="flow-step-badge">Admin</span>
+        </div>
+        <div class="flow-step admin">
+          <div class="flow-step-num"></div>
+          <h4>Surat Saran &amp; Masukan</h4>
+          <p>Setelah konsultasi selesai, Admin mengirimkan Surat Saran dan Masukan resmi dari Direktorat</p>
+          <span class="flow-step-badge">Admin</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Pelaksanaan -->
+    <div class="layanan-grid" style="margin-bottom:3rem">
+      <div class="layanan-card">
+        <div class="card-icon">🏢</div>
+        <div class="card-tag">Konsultasi Offline</div>
+        <div class="card-title">Tatap Muka di Kantor</div>
+        <div class="card-desc">Konsultasi dilaksanakan di kantor Direktorat PSDA Berkelanjutan. Admin akan menginformasikan tanggal, waktu, dan ruangan melalui surat balasan resmi.</div>
+      </div>
+      <div class="layanan-card">
+        <div class="card-icon">💻</div>
+        <div class="card-tag">Konsultasi Online</div>
+        <div class="card-title">Via Platform Zoom</div>
+        <div class="card-desc">Konsultasi dilaksanakan via Zoom Meeting. Link, ID meeting, dan passcode akan disampaikan dalam surat balasan resmi.</div>
+      </div>
+      <div class="layanan-card" style="border-color:var(--border-gold);background:rgba(201,162,39,0.08)">
+        <div class="card-icon"></div>
+        <div class="card-tag">Output Konsultasi</div>
+        <div class="card-title">Surat Saran dan Masukan</div>
+        <div class="card-desc">Setelah konsultasi selesai, Direktorat akan menerbitkan Surat Saran dan Masukan resmi sebagai panduan penyempurnaan dokumen RPPLH Anda.</div>
+      </div>
+    </div>
+
+    <!-- FORM KONSULTASI -->
+    <div class="form-section" id="formKonsultasi">
+      <div class="form-content">
+        <h3>📭 Formulir Pendaftaran Konsultasi RPPLH</h3>
+        <p>Lengkapi seluruh data berikut untuk mendaftarkan permohonan Konsultasi Teknis RPPLH</p>
+        <div class="form-alert form-alert-info">
+          <!-- <span class="form-alert-icon">ℹ️</span> -->
+          <span>Setelah konsultasi selesai dilaksanakan, Direktorat akan menerbitkan Surat Saran dan Masukan resmi dalam waktu 7 hari kerja.</span>
+        </div>
+        <div class="form-steps-bar">
+          <div class="form-step-indicator active">1· Jenis Pemda</div>
+          <div class="form-step-indicator">2· Data Diri</div>
+          <div class="form-step-indicator">3· Upload Dokumen</div>
+        </div>
+
+        <!-- Pane 1 -->
+        <div class="form-pane active">
+          <div class="form-group">
+            <label>Jenis Pemerintah Daerah <span>*</span></label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="jenis_pemda_kons" value="provinsi" required />Pemda Provinsi</label>
+              <label class="radio-label"><input type="radio" name="jenis_pemda_kons" value="kabkota" />Pemda Kabupaten/Kota</label>
+            </div>
+          </div>
+          <div class="form-group" id="konsultasi-wilayah-provinsi" style="display:none">
+            <label>Provinsi <span>*</span></label>
+            <select class="form-control" name="provinsi_kons">
+              <option value="">-- Pilih Provinsi --</option>
+              <option>Aceh</option><option>Sumatera Utara</option><option>Sumatera Barat</option><option>Riau</option><option>Jambi</option><option>Sumatera Selatan</option><option>Bengkulu</option><option>Lampung</option><option>Bangka Belitung</option><option>Kepulauan Riau</option><option>DKI Jakarta</option><option>Jawa Barat</option><option>Jawa Tengah</option><option>DI Yogyakarta</option><option>Jawa Timur</option><option>Banten</option><option>Bali</option><option>Nusa Tenggara Barat</option><option>Nusa Tenggara Timur</option><option>Kalimantan Barat</option><option>Kalimantan Tengah</option><option>Kalimantan Selatan</option><option>Kalimantan Timur</option><option>Kalimantan Utara</option><option>Sulawesi Utara</option><option>Sulawesi Tengah</option><option>Sulawesi Selatan</option><option>Sulawesi Tenggara</option><option>Gorontalo</option><option>Sulawesi Barat</option><option>Maluku</option><option>Maluku Utara</option><option>Papua Barat</option><option>Papua</option><option>Papua Selatan</option><option>Papua Tengah</option><option>Papua Pegunungan</option><option>Papua Barat Daya</option>
+            </select>
+          </div>
+          <div class="form-group" id="konsultasi-wilayah-kabkota" style="display:none">
+            <div class="form-grid-2">
+              <div class="form-group" style="margin-bottom:0">
+                <label>Provinsi <span>*</span></label>
+                <select class="form-control" name="provinsi_kons_kk">
+                  <option value="">-- Pilih Provinsi --</option>
+                  <option>Aceh</option><option>Sumatera Utara</option><option>Sumatera Barat</option><option>Riau</option><option>Jambi</option><option>Sumatera Selatan</option><option>Bengkulu</option><option>Lampung</option><option>Bangka Belitung</option><option>Kepulauan Riau</option><option>DKI Jakarta</option><option>Jawa Barat</option><option>Jawa Tengah</option><option>DI Yogyakarta</option><option>Jawa Timur</option><option>Banten</option><option>Bali</option><option>Nusa Tenggara Barat</option><option>Nusa Tenggara Timur</option><option>Kalimantan Barat</option><option>Kalimantan Tengah</option><option>Kalimantan Selatan</option><option>Kalimantan Timur</option><option>Kalimantan Utara</option><option>Sulawesi Utara</option><option>Sulawesi Tengah</option><option>Sulawesi Selatan</option><option>Sulawesi Tenggara</option><option>Gorontalo</option><option>Sulawesi Barat</option><option>Maluku</option><option>Maluku Utara</option><option>Papua Barat</option><option>Papua</option><option>Papua Selatan</option><option>Papua Tengah</option><option>Papua Pegunungan</option><option>Papua Barat Daya</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom:0">
+                <label>Kabupaten/Kota <span>*</span></label>
+                <input class="form-control" type="text" name="kabkota_kons" placeholder="Nama Kabupaten/Kota" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Tahap Penyusunan RPPLH <span>*</span></label>
+            <select class="form-control" name="tahap_kons" required>
+              <option value="">-- Pilih Tahap --</option>
+              <option>Tahap Awal (Perencanaan)</option>
+              <option>Tahap Penyusunan Draft</option>
+              <option>Tahap Review/Evaluasi</option>
+              <option>Tahap Finalisasi</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Metode Konsultasi <span>*</span></label>
+            <select class="form-control" name="metode_kons" required>
+              <option value="">-- Pilih Metode --</option>
+              <option value="offline">🏢 Offline (Tatap Muka)</option>
+              <option value="online">💻 Online (Zoom)</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-next">Lanjut: Data Diri <svg fill="none" height="16" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+
+        <!-- Pane 2 -->
+        <div class="form-pane">
+          <div class="form-grid-2">
+            <div class="form-group"><label>Nama Lengkap <span>*</span></label><input class="form-control" type="text" placeholder="Nama lengkap pemohon" required /></div>
+            <div class="form-group"><label>NIP <span>*</span></label><input class="form-control" type="text" placeholder="Nomor Induk Pegawai" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required /></div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group"><label>Jabatan <span>*</span></label><input class="form-control" type="text" placeholder="Jabatan" required /></div>
+            <div class="form-group"><label>Instansi/Dinas <span>*</span></label><input class="form-control" type="text" placeholder="Nama instansi" required /></div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group"><label>No. HP/WhatsApp <span>*</span></label><input class="form-control" type="text" placeholder="08xxxxxxxxxx" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required /></div>
+            <div class="form-group"><label>Email Resmi <span>*</span></label><input class="form-control" type="email" placeholder="email@instansi.go.id" required /></div>
+          </div>
+          <div class="form-group">
+            <label>Permasalahan/Isu Teknis yang Dikonsultasikan <span>*</span></label>
+            <textarea class="form-control" placeholder="Uraikan permasalahan atau isu teknis RPPLH yang ingin dikonsultasikan secara detail" rows="4" required></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-back">← Kembali</button>
+            <button type="button" class="btn-next">Lanjut: Upload Dokumen <svg fill="none" height="16" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+
+        <!-- Pane 3 -->
+        <div class="form-pane">
+          <div class="form-alert form-alert-warning">
+            <span class="form-alert-icon">⚠️</span>
+            <span>Materi teknis RPPLH harus sudah dalam format draft awal minimal. Dokumen berupa PDF dengan ukuran maksimal 10 MB per file.</span>
+          </div>
+          <div class="form-group">
+            <label>Surat Permohonan Konsultasi RPPLH <span>*</span></label>
+            <p style="font-size:0.8rem;color:var(--gray-400);margin-bottom:0.75rem">Surat resmi dari Kepala Dinas/OPD yang membidangi lingkungan hidup</p>
+            <div class="upload-area">
+              <input type="file" accept=".pdf,.doc,.docx" />
+              <div class="upload-icon">📄</div>
+              <p>Klik atau seret file ke sini</p>
+              <span>PDF, DOC, DOCX — Maks. 5 MB</span>
+              <div class="upload-list"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Materi Teknis RPPLH <span>*</span></label>
+            <p style="font-size:0.8rem;color:var(--gray-400);margin-bottom:0.75rem">Draft dokumen RPPLH atau materi teknis yang akan dikonsultasikan (dapat berupa draft, outline, atau dokumen yang sudah jadi)</p>
+            <div class="upload-area">
+              <input type="file" accept=".pdf,.doc,.docx,.pptx,.ppt" />
+              <div class="upload-icon"></div>
+              <p>Klik atau seret file ke sini</p>
+              <span>PDF, Word, PowerPoint — Maks. 10 MB</span>
+              <div class="upload-list"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Dokumen Pendukung (Opsional)</label>
+            <div class="upload-area">
+              <input type="file" accept=".pdf,.doc,.docx,.xlsx" multiple />
+              <div class="upload-icon">📎</div>
+              <p>Klik atau seret file ke sini</p>
+              <span>Berbagai format — Maks. 5 MB/file</span>
+              <div class="upload-list"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="radio-label" style="max-width:100%;flex:none">
+              <input type="checkbox" required /> Saya menyatakan bahwa seluruh informasi yang disampaikan adalah benar dan dokumen yang diunggah adalah dokumen resmi yang sah.
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-back">← Kembali</button>
+            <button type="button" class="btn-submit">Kirim Permohonan</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="form-success">
+        <div class="success-icon">✅</div>
+        <h3>Permohonan Berhasil Dikirim!</h3>
+        <p>Terima kasih. Permohonan Anda telah terekam di sistem kami dengan Nomor Tiket / Registrasi berikut:</p>
+        <div class="ticket-id-display" style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: var(--radius-sm); font-family: monospace; font-size: 1.5rem; letter-spacing: 2px; font-weight: bold; margin: 1.5rem auto; max-width: 300px; color: var(--gold-300);">
+          TICKET-ID
+        </div>
+        <p style="font-size:0.9rem; color:var(--gray-300);">Harap simpan nomor tiket di atas. Anda dapat memantau status persetujuan, jadwal, surat balasan, dan link zoom melalui halaman Lacak Layanan.</p>
+        <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <a class="btn-primary" href="lacak-layanan.html" id="btnTrackLayanan">🔍 Lacak Layanan</a>
+          <a class="btn-outline" href="survei-kepuasan.html">Isi Survei Kepuasan</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" style="height:40px; width:auto;"><span class="footer-logo-text">Dit. PSDA Berkelanjutan</span></div>
+          <p class="footer-desc">Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup.</p>
+          <div class="footer-contact"><p>Menara Plaza Kuningan<br>Jl. H.R. Rasuna Said Kav. C11-14 Kuningan, Jakarta Selatan<br><a href="mailto:egis@kemenlh.go.id">egis@kemenlh.go.id</a><br>6282211210700<br>(021) 5720254</p></div>
+        </div>
+        <div class="footer-col"><h5>Tentang</h5><ul><li><a href="tentang.html">Profil Direktorat</a></li><li><a href="tentang.html#visi-misi">Visi &amp; Misi</a></li><li><a href="tentang.html#tupoksi">Tugas &amp; Fungsi</a></li><li><a href="tentang.html#struktur">Struktur Organisasi</a></li></ul></div>
+        <div class="footer-col"><h5>Layanan</h5><ul><li><a href="layanan-rpplh.html">RPPLH</a></li><li><a href="layanan-rpplh.html#bimtek">Bimtek RPPLH</a></li><li><a href="layanan-rpplh.html#konsultasi">Konsultasi RPPLH</a></li><li><a href="https://egis.kemenlh.go.id" target="_blank">Spasial</a></li></ul></div>
+        <div class="footer-col"><h5>Informasi</h5><ul><li><a href="informasi-peraturan.html">Peraturan</a></li><li><a href="informasi-berita.html">Berita</a></li><li><a href="informasi-infografis.html">Infografis</a></li><li><a href="informasi-videografis.html">Videografis</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup</p></div>
+    </div>
+  </footer>
+
+<script src="assets/js/script.js"></script>
+<script>
+// Sync hero cards with tabs
+function syncHeroCards(tabName) {
+  document.getElementById('cardBimtek')?.classList.toggle('active-card', tabName === 'bimtek');
+  document.getElementById('cardKonsultasi')?.classList.toggle('active-card', tabName === 'konsultasi');
+}
+const origSwitch = window.switchRpplhTab;
+window.switchRpplhTab = function(tabName) {
+  origSwitch && origSwitch(tabName);
+  syncHeroCards(tabName);
+};
+
+// Show/hide province/kabkota fields based on radio selection
+document.querySelectorAll('input[name="jenis_pemda_bimtek"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    const val = radio.value;
+    const provEl = document.getElementById('bimtek-wilayah-provinsi');
+    const kabEl = document.getElementById('bimtek-wilayah-kabkota');
+    if(provEl) provEl.style.display = val === 'provinsi' ? 'block' : 'none';
+    if(kabEl) kabEl.style.display = val === 'kabkota' ? 'block' : 'none';
+  });
+});
+
+document.querySelectorAll('input[name="jenis_pemda_kons"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    const val = radio.value;
+    const provEl = document.getElementById('konsultasi-wilayah-provinsi');
+    const kabEl = document.getElementById('konsultasi-wilayah-kabkota');
+    if(provEl) provEl.style.display = val === 'provinsi' ? 'block' : 'none';
+    if(kabEl) kabEl.style.display = val === 'kabkota' ? 'block' : 'none';
+  });
+});
+
+// Helper to collect files from multiple inputs
+function appendFiles(formData, formId) {
+  const inputs = document.querySelectorAll(`#${formId} input[type="file"]`);
+  inputs.forEach(input => {
+    if (input.files) {
+      for (let i = 0; i < input.files.length; i++) {
+        formData.append('documents', input.files[i]);
+      }
+    }
+  });
+}
+
+// Handle Bimtek Submission
+const btnSubmitBimtek = document.querySelector('#bimtek .btn-submit');
+if(btnSubmitBimtek) {
+  btnSubmitBimtek.addEventListener('click', async () => {
+    const pane = document.getElementById('bimtek-p3');
+    const checkbox = pane.querySelector('input[type="checkbox"]');
+    if (!checkbox.checked) return alert('Harap setujui konfirmasi persetujuan.');
+    
+    btnSubmitBimtek.innerHTML = 'Mengirim...';
+    btnSubmitBimtek.disabled = true;
+
+    const fd = new FormData();
+    fd.append('service_type', 'bimtek');
+    const jp = document.querySelector('input[name="jenis_pemda_bimtek"]:checked')?.value || '';
+    fd.append('jenis_pemda', jp);
+    if(jp==='provinsi') fd.append('provinsi', document.querySelector('select[name="provinsi_bimtek"]').value);
+    else {
+      fd.append('provinsi', document.querySelector('select[name="provinsi_bimtek_kk"]').value);
+      fd.append('kabkota', document.querySelector('input[name="kabkota_bimtek"]').value);
+    }
+    fd.append('metode', document.querySelector('select[name="metode_bimtek"]').value);
+    
+    // Data Diri
+    const inputs = document.querySelectorAll('#bimtek-p2 input, #bimtek-p2 textarea');
+    fd.append('nama', inputs[0].value);
+    fd.append('nip', inputs[1].value);
+    fd.append('jabatan', inputs[2].value);
+    fd.append('instansi', inputs[3].value);
+    fd.append('hp', inputs[4].value);
+    fd.append('email', inputs[5].value);
+    fd.append('alamat', inputs[6].value);
+    fd.append('kebutuhan', inputs[7].value);
+
+    appendFiles(fd, 'bimtek-p3');
+
+    try {
+      const res = await fetch('/api/services', { method: 'POST', body: fd });
+      const data = await res.json();
+      if(data.success) {
+        document.querySelector('#bimtek .ticket-id-display').textContent = data.ticket_id;
+        document.querySelector('#bimtek a.btn-primary').href = 'lacak-layanan.html?ticket=' + data.ticket_id;
+        document.querySelector('#bimtek .form-content').style.display = 'none';
+        document.querySelector('#bimtek .form-success').style.display = 'block';
+        window.scrollTo({top:0, behavior:'smooth'});
+      } else alert(data.error || 'Gagal mengirim permohonan');
+    } catch(e) {
+      alert('Terjadi kesalahan jaringan.');
+    }
+    btnSubmitBimtek.innerHTML = 'Kirim Permohonan';
+    btnSubmitBimtek.disabled = false;
+  });
+}
+
+// Handle Konsultasi Submission
+const btnSubmitKons = document.querySelector('#konsultasi .btn-submit');
+if(btnSubmitKons) {
+  btnSubmitKons.addEventListener('click', async () => {
+    const panes = document.querySelectorAll('#formKonsultasi .form-pane');
+    const checkbox = panes[2].querySelector('input[type="checkbox"]');
+    if (!checkbox.checked) return alert('Harap setujui konfirmasi persetujuan.');
+
+    btnSubmitKons.innerHTML = 'Mengirim...';
+    btnSubmitKons.disabled = true;
+
+    const fd = new FormData();
+    fd.append('service_type', 'konsultasi');
+    const jp = document.querySelector('input[name="jenis_pemda_kons"]:checked')?.value || '';
+    fd.append('jenis_pemda', jp);
+    
+    if(jp==='provinsi') fd.append('provinsi', document.querySelector('select[name="provinsi_kons"]').value);
+    else {
+      fd.append('provinsi', document.querySelector('select[name="provinsi_kons_kk"]').value);
+      fd.append('kabkota', document.querySelector('input[name="kabkota_kons"]').value);
+    }
+
+    fd.append('tahap_penyusunan', document.querySelector('select[name="tahap_kons"]').value);
+    fd.append('metode', document.querySelector('select[name="metode_kons"]').value);
+
+    // Data Diri
+    const inputs = panes[1].querySelectorAll('input, textarea');
+    fd.append('nama', inputs[0].value);
+    fd.append('nip', inputs[1].value);
+    fd.append('jabatan', inputs[2].value);
+    fd.append('instansi', inputs[3].value);
+    fd.append('hp', inputs[4].value);
+    fd.append('email', inputs[5].value);
+    fd.append('kebutuhan', inputs[6].value); // Permasalahan
+
+    appendFiles(fd, 'formKonsultasi');
+
+    try {
+      const res = await fetch('/api/services', { method: 'POST', body: fd });
+      const data = await res.json();
+      if(data.success) {
+        document.querySelector('#konsultasi .ticket-id-display').textContent = data.ticket_id;
+        document.querySelector('#konsultasi a.btn-primary').href = 'lacak-layanan.html?ticket=' + data.ticket_id;
+        document.querySelector('#konsultasi .form-content').style.display = 'none';
+        document.querySelector('#konsultasi .form-success').style.display = 'block';
+        window.scrollTo({top:0, behavior:'smooth'});
+      } else alert(data.error || 'Gagal mengirim permohonan');
+    } catch(e) {
+      alert('Terjadi kesalahan jaringan.');
+    }
+    btnSubmitKons.innerHTML = 'Kirim Permohonan';
+    btnSubmitKons.disabled = false;
+  });
+}
+</script>
+</body>
+</html>
+

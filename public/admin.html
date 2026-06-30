@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin — SEDAP KLH</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ── CSS Variables (Dark mode default) ── */
+    :root {
+      --bg:        #0a1a0a;
+      --bg2:       #0d1f0d;
+      --bg3:       #0a150a;
+      --surface:   rgba(255,255,255,0.03);
+      --surface2:  rgba(255,255,255,0.06);
+      --border:    rgba(255,255,255,0.06);
+      --border2:   rgba(255,255,255,0.10);
+      --text:      #e0e0e0;
+      --text2:     #aaa;
+      --text3:     #888;
+      --text4:     #555;
+      --modal-bg:  #111;
+      --gold:      #c9a227;
+      --gold2:     #e6be3a;
+      --input-bg:  rgba(255,255,255,0.06);
+      --input-text:#e0e0e0;
+      --hover-bg:  rgba(255,255,255,0.04);
+      --hover-text:#fff;
+      --th-color:  #888;
+      --td-hover:  rgba(255,255,255,0.02);
+      --td-border: rgba(255,255,255,0.03);
+    }
+    [data-admin-theme="light"] {
+      --bg:        #f0f4f0;
+      --bg2:       #e8f0e8;
+      --bg3:       #dceadc;
+      --surface:   rgba(255,255,255,0.85);
+      --surface2:  rgba(255,255,255,0.95);
+      --border:    rgba(22,100,22,0.12);
+      --border2:   rgba(22,100,22,0.20);
+      --text:      #111a11;
+      --text2:     #3a5c3a;
+      --text3:     #5a7a5a;
+      --text4:     #8aaa8a;
+      --modal-bg:  #ffffff;
+      --input-bg:  #f8fff8;
+      --input-text:#111a11;
+      --hover-bg:  rgba(22,100,22,0.06);
+      --hover-text:#0a3a0a;
+      --th-color:  #5a7a5a;
+      --td-hover:  rgba(22,100,22,0.04);
+      --td-border: rgba(22,100,22,0.07);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { transition: background 0.3s, color 0.3s; }
+    body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; }
+
+    /* ── SIDEBAR ── */
+    .sidebar { width:260px; background:linear-gradient(180deg,var(--bg2),var(--bg3)); border-right:1px solid var(--border); display:flex; flex-direction:column; position:fixed; height:100vh; z-index:100; transition:background 0.3s,border-color 0.3s; }
+    .sidebar-brand { padding:1.5rem; border-bottom:1px solid var(--border); text-align:center; }
+    .sidebar-brand h2 { font-size:1.1rem; color:var(--gold); margin-top:0.5rem; }
+    .sidebar-brand p  { font-size:0.75rem; color:var(--text3); }
+    .sidebar-user { padding:1rem 1.5rem; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:0.75rem; }
+    .user-avatar { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#1a5c1a,#c9a227); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; color:#fff; }
+    .user-info { flex:1; }
+    .user-info strong { font-size:0.85rem; display:block; color:var(--text); }
+    .user-info small  { color:var(--text3); font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; }
+    .sidebar-nav { flex:1; padding:1rem 0; overflow-y:auto; }
+    .nav-section { padding:0.5rem 1.5rem; font-size:0.65rem; text-transform:uppercase; letter-spacing:2px; color:var(--text4); margin-top:0.5rem; }
+    .nav-item { display:flex; align-items:center; gap:0.75rem; padding:0.7rem 1.5rem; color:var(--text2); text-decoration:none; font-size:0.85rem; cursor:pointer; transition:all 0.2s; border-right:3px solid transparent; }
+    .nav-item:hover { background:var(--hover-bg); color:var(--hover-text); }
+    .nav-item.active { background:rgba(201,162,39,0.12); color:var(--gold); border-right-color:var(--gold); }
+    .nav-item .icon { font-size:1.1rem; width:24px; text-align:center; }
+    .nav-item .badge { margin-left:auto; background:var(--gold); color:#000; font-size:0.65rem; padding:2px 8px; border-radius:10px; font-weight:700; }
+    .sidebar-footer { padding:1rem 1.5rem; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:0.5rem; }
+    .btn-logout { width:100%; padding:0.6rem; background:rgba(220,50,50,0.15); color:#e74c3c; border:1px solid rgba(220,50,50,0.3); border-radius:6px; cursor:pointer; font-size:0.8rem; transition:all 0.2s; }
+    .btn-logout:hover { background:rgba(220,50,50,0.3); }
+
+    /* ── THEME TOGGLE ── */
+    .theme-toggle-row { display:flex; align-items:center; justify-content:space-between; }
+    .theme-label { font-size:0.75rem; color:var(--text3); }
+    .theme-switch { position:relative; display:inline-block; width:44px; height:24px; }
+    .theme-switch input { opacity:0; width:0; height:0; }
+    .theme-slider { position:absolute; cursor:pointer; inset:0; background:rgba(255,255,255,0.1); border-radius:24px; transition:0.3s; border:1px solid var(--border2); }
+    .theme-slider::before { content:''; position:absolute; height:18px; width:18px; left:2px; top:2px; background:#c9a227; border-radius:50%; transition:0.3s; }
+    .theme-switch input:checked + .theme-slider { background:rgba(22,163,74,0.2); }
+    .theme-switch input:checked + .theme-slider::before { transform:translateX(20px); background:#16a34a; }
+    .theme-icon-label { font-size:0.8rem; }
+
+    /* ── MAIN AREA ── */
+    .main { flex:1; margin-left:260px; padding:2rem; min-height:100vh; transition:background 0.3s; }
+    .main-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; }
+    .main-header h1 { font-size:1.5rem; color:var(--text); }
+    .main-header h1 span { color:var(--gold); }
+
+    /* ── STAT CARDS ── */
+    .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:2rem; }
+    .stat-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.25rem; transition:all 0.3s; }
+    .stat-card:hover { border-color:rgba(201,162,39,0.3); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.1); }
+    .stat-card .stat-icon { font-size:1.5rem; margin-bottom:0.5rem; }
+    .stat-card .stat-value { font-size:1.8rem; font-weight:800; color:var(--text); }
+    .stat-card .stat-label { font-size:0.75rem; color:var(--text3); text-transform:uppercase; letter-spacing:1px; }
+
+    /* ── PANELS ── */
+    .panel { display:none; }
+    .panel.active { display:block; }
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem; }
+    .card h3 { font-size:1.1rem; margin-bottom:1rem; color:var(--gold); }
+
+    /* ── TOOLBAR ── */
+    .toolbar { display:flex; gap:0.75rem; margin-bottom:1.5rem; flex-wrap:wrap; align-items:center; }
+    .toolbar select, .toolbar input { background:var(--input-bg); border:1px solid var(--border2); color:var(--input-text); padding:0.5rem 0.75rem; border-radius:6px; font-size:0.8rem; transition:0.2s; }
+    .toolbar input { flex:1; min-width:200px; }
+    .toolbar select:focus, .toolbar input:focus { outline:none; border-color:var(--gold); }
+
+    /* ── TABLE ── */
+    table { width:100%; border-collapse:collapse; font-size:0.82rem; }
+    th { text-align:left; padding:0.75rem; color:var(--th-color); border-bottom:1px solid var(--border); font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; }
+    td { padding:0.75rem; border-bottom:1px solid var(--td-border); color:var(--text); }
+    tr:hover td { background:var(--td-hover); }
+
+    /* ── BADGES ── */
+    .status-badge { padding:3px 10px; border-radius:20px; font-size:0.7rem; font-weight:600; text-transform:uppercase; }
+    .status-pending { background:rgba(241,196,15,0.15); color:#d4a017; }
+    .status-investigating, .status-processing { background:rgba(52,152,219,0.15); color:#3498db; }
+    .status-resolved, .status-completed { background:rgba(46,204,113,0.15); color:#1a9e5a; }
+    .status-dismissed, .status-rejected { background:rgba(231,76,60,0.15); color:#e74c3c; }
+    .status-scheduled { background:rgba(155,89,182,0.15); color:#9b59b6; }
+
+    /* ── BUTTONS ── */
+    .btn-sm { padding:4px 12px; font-size:0.75rem; border-radius:4px; cursor:pointer; border:none; transition:all 0.2s; }
+    .btn-view { background:rgba(52,152,219,0.15); color:#3498db; }
+    .btn-view:hover { background:rgba(52,152,219,0.3); }
+    .btn-danger { background:rgba(231,76,60,0.15); color:#e74c3c; }
+    .btn-danger:hover { background:rgba(231,76,60,0.3); }
+
+    /* ── MODAL ── */
+    .modal-overlay { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.6); z-index:200; justify-content:center; align-items:center; backdrop-filter:blur(4px); }
+    .modal-overlay.show { display:flex; }
+    .modal { background:var(--modal-bg); border:1px solid var(--border2); border-radius:12px; padding:2rem; max-width:700px; width:90%; max-height:80vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.3); }
+    .modal h3 { color:var(--gold); margin-bottom:1rem; }
+    .modal label { display:block; font-size:0.8rem; color:var(--text2); margin-bottom:0.3rem; margin-top:0.75rem; }
+    .modal input, .modal select, .modal textarea { width:100%; background:var(--input-bg); border:1px solid var(--border2); color:var(--input-text); padding:0.5rem; border-radius:6px; font-size:0.85rem; }
+    .modal textarea { resize:vertical; min-height:80px; }
+    .modal-actions { display:flex; gap:0.75rem; margin-top:1.5rem; justify-content:flex-end; }
+    .btn-primary { padding:0.5rem 1.5rem; background:linear-gradient(135deg,#1a5c1a,#2d8a2d); color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:0.85rem; }
+    .btn-primary:hover { opacity:0.9; }
+    .btn-secondary { padding:0.5rem 1.5rem; background:var(--surface2); color:var(--text2); border:1px solid var(--border2); border-radius:6px; cursor:pointer; font-size:0.85rem; }
+    .btn-add { padding:0.5rem 1rem; background:linear-gradient(135deg,#c9a227,#e6be3a); color:#000; border:none; border-radius:6px; cursor:pointer; font-size:0.8rem; font-weight:600; }
+    .detail-row { display:grid; grid-template-columns:140px 1fr; gap:0.5rem; padding:0.4rem 0; font-size:0.85rem; }
+    .detail-row .label { color:var(--text3); }
+    .empty-state { text-align:center; padding:3rem; color:var(--text4); }
+    .empty-state .icon { font-size:3rem; margin-bottom:1rem; }
+
+    /* ── LOGIN ── */
+    .login-wrapper { display:flex; justify-content:center; align-items:center; min-height:100vh; width:100%; }
+    .login-card { background:var(--surface2); border:1px solid var(--border2); border-radius:16px; padding:3rem; max-width:400px; width:90%; text-align:center; box-shadow:0 16px 48px rgba(0,0,0,0.2); }
+    .login-card h2 { color:var(--gold); margin-bottom:0.5rem; }
+    .login-card p { color:var(--text3); font-size:0.85rem; margin-bottom:2rem; }
+    .login-card input { width:100%; background:var(--input-bg); border:1px solid var(--border2); color:var(--input-text); padding:0.75rem; border-radius:8px; font-size:0.9rem; margin-bottom:1rem; transition:0.2s; }
+    .login-card input:focus { outline:none; border-color:var(--gold); }
+    .login-card button { width:100%; padding:0.75rem; background:linear-gradient(135deg,#1a5c1a,#c9a227); color:#fff; border:none; border-radius:8px; font-size:0.95rem; cursor:pointer; font-weight:600; transition:0.2s; }
+    .login-card button:hover { opacity:0.9; }
+    .login-theme { position:fixed; top:1rem; right:1rem; }
+    .login-error { color:#e74c3c; font-size:0.8rem; margin-bottom:1rem; display:none; }
+
+    @media(max-width:768px) { .sidebar { display:none; } .main { margin-left:0; } }
+  </style>
+</head>
+<body>
+  <!-- LOGIN SCREEN -->
+  <!-- Theme toggle on login page (top right) -->
+  <div class="login-theme">
+    <button id="loginThemeBtn" onclick="toggleAdminTheme()" title="Ganti tema" style="background:var(--surface2);border:1px solid var(--border2);color:var(--text);padding:0.4rem 0.8rem;border-radius:20px;cursor:pointer;font-size:0.85rem;transition:0.2s;">🌙</button>
+  </div>
+  <div id="loginScreen" class="login-wrapper">
+    <div class="login-card">
+      <div style="font-size:3rem;margin-bottom:1rem">🌿</div>
+      <h2>SEDAP KLH Admin</h2>
+      <p>Login untuk mengakses Dashboard</p>
+      <div id="loginError" class="login-error"></div>
+      <input type="text" id="loginUser" placeholder="Username">
+      <input type="password" id="loginPass" placeholder="Password">
+      <button onclick="doLogin()">🔐 Masuk</button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboardScreen" style="display:none;width:100%">
+    <div class="sidebar">
+      <div class="sidebar-brand">
+        <div style="font-size:2rem">🌿</div>
+        <h2>SEDAP KLH</h2>
+        <p>Dashboard Admin</p>
+      </div>
+      <div class="sidebar-user">
+        <div class="user-avatar" id="userAvatar">A</div>
+        <div class="user-info">
+          <strong id="userName">Admin</strong>
+          <small id="userRole">ADMINISTRATOR</small>
+        </div>
+      </div>
+      <div class="sidebar-nav" id="sidebarNav"></div>
+      <div class="sidebar-footer">
+        <button class="btn-logout" onclick="doLogout()">🚪 Keluar</button>
+        <a href="index.html" style="display:block;text-align:center;color:var(--text3);font-size:0.75rem;text-decoration:none;">← Kembali ke Website</a>
+        <div class="theme-toggle-row" style="margin-top:0.5rem;">
+          <span class="theme-label"><span id="adminThemeIcon">🌙</span> Tampilan</span>
+          <label class="theme-switch">
+            <input type="checkbox" id="adminThemeToggle" onchange="toggleAdminTheme()">
+            <span class="theme-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <!-- OVERVIEW PANEL -->
+      <div class="panel active" id="panelOverview">
+        <div class="main-header"><h1> <span>Dashboard</span> Overview</h1></div>
+        <div class="stats-grid" id="statsGrid"></div>
+      </div>
+
+      <!-- WHISTLEBLOWING PANEL -->
+      <div class="panel" id="panelWhistleblowing">
+        <div class="main-header"><h1> <span>Whistle Blowing</span></h1></div>
+        <div class="toolbar">
+          <select id="wbFilterStatus" onchange="loadReports()"><option value="all">Semua Status</option><option value="pending">Pending</option><option value="investigating">Investigating</option><option value="resolved">Resolved</option><option value="dismissed">Dismissed</option></select>
+          <input type="text" id="wbSearch" placeholder="Cari laporan..." oninput="loadReports()">
+        </div>
+        <div class="card"><table><thead><tr><th>Tiket</th><th>Kategori</th><th>Subjek</th><th>Severity</th><th>Status</th><th>Tanggal</th><th>Aksi</th></tr></thead><tbody id="reportsTable"></tbody></table></div>
+      </div>
+
+      <!-- SERVICES PANEL -->
+      <div class="panel" id="panelServices">
+        <div class="main-header"><h1> <span>Layanan RPPLH</span></h1></div>
+        <div class="toolbar">
+          <select id="svcFilterType" onchange="loadServices()"><option value="all">Semua Jenis</option><option value="bimtek">Bimtek RPPLH</option><option value="konsultasi">Konsultasi RPPLH</option></select>
+          <select id="svcFilterStatus" onchange="loadServices()"><option value="all">Semua Status</option><option value="pending">Pending</option><option value="scheduled">Dijadwalkan</option><option value="completed">Selesai</option><option value="rejected">Ditolak</option></select>
+          <input type="text" id="svcSearch" placeholder="Cari layanan..." oninput="loadServices()">
+        </div>
+        <div class="card"><table><thead><tr><th>Tiket</th><th>Jenis</th><th>Pemohon</th><th>Daerah</th><th>Metode</th><th>Status</th><th>Tanggal</th><th>Aksi</th></tr></thead><tbody id="servicesTable"></tbody></table></div>
+      </div>
+
+      <!-- SURVEYS PANEL -->
+      <div class="panel" id="panelSurveys">
+        <div class="main-header"><h1> <span>Hasil Survei</span></h1></div>
+        <div class="toolbar">
+          <select id="surveyFilter" onchange="loadSurveys()"><option value="all">Semua Survei</option><option value="kepuasan">Kepuasan Masyarakat</option><option value="antikorupsi">Persepsi Anti Korupsi</option></select>
+        </div>
+        <div class="stats-grid" id="surveyStats"></div>
+        <div class="card"><table><thead><tr><th>#</th><th>Jenis Survei</th><th>Tanggal</th><th>Aksi</th></tr></thead><tbody id="surveysTable"></tbody></table></div>
+      </div>
+
+      <!-- CONTENT PANEL -->
+      <div class="panel" id="panelContent">
+        <div class="main-header"><h1> <span>Manajemen Konten</span></h1><button class="btn-add" onclick="showContentModal()">+ Tambah Konten</button></div>
+        <div class="toolbar">
+          <select id="contentFilter" onchange="loadContent()"><option value="all">Semua Jenis</option><option value="berita">Berita</option><option value="infografis">Infografis</option><option value="videografis">Videografis</option><option value="peraturan">Peraturan</option></select>
+        </div>
+        <div class="card"><table><thead><tr><th>#</th><th>Jenis</th><th>Judul</th><th>Tanggal</th><th>Aksi</th></tr></thead><tbody id="contentTable"></tbody></table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAIL MODAL -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal" id="modalBody"></div>
+  </div>
+
+  <script>
+    let AUTH_TOKEN = '';
+    let USER_ROLE = '';
+    const API = '';
+
+    // ============ LOGIN ============
+    async function doLogin() {
+      const username = document.getElementById('loginUser').value;
+      const password = document.getElementById('loginPass').value;
+      try {
+        const res = await fetch(API+'/api/admin/login', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,password})});
+        const data = await res.json();
+        if (data.success) {
+          AUTH_TOKEN = data.token;
+          USER_ROLE = data.role;
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('role', data.role);
+          localStorage.setItem('username', data.username);
+          showDashboard(data.username, data.role);
+        } else {
+          document.getElementById('loginError').style.display='block';
+          document.getElementById('loginError').textContent=data.error;
+        }
+      } catch(e) {
+        document.getElementById('loginError').style.display='block';
+        document.getElementById('loginError').textContent='Gagal terhubung ke server';
+      }
+    }
+    document.getElementById('loginPass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+
+    function doLogout() {
+      localStorage.clear();
+      AUTH_TOKEN=''; USER_ROLE='';
+      document.getElementById('loginScreen').style.display='flex';
+      document.getElementById('dashboardScreen').style.display='none';
+    }
+
+    // Auto-login
+    (function(){
+      const t=localStorage.getItem('token');
+      const r=localStorage.getItem('role');
+      const u=localStorage.getItem('username');
+      if(t&&r&&u){AUTH_TOKEN=t;USER_ROLE=r;showDashboard(u,r);}
+    })();
+
+    function showDashboard(username, role) {
+      document.getElementById('loginScreen').style.display='none';
+      document.getElementById('dashboardScreen').style.display='flex';
+      document.getElementById('userName').textContent=username;
+      document.getElementById('userAvatar').textContent=username[0].toUpperCase();
+      const roleMap={admin:'ADMINISTRATOR',rpplh:'RPPLH MANAGER',zi:'ZONA INTEGRITAS'};
+      document.getElementById('userRole').textContent=roleMap[role]||role.toUpperCase();
+      buildSidebar(role);
+      switchPanel('panelOverview');
+      loadDashboardStats();
+    }
+
+    function buildSidebar(role) {
+      const nav = document.getElementById('sidebarNav');
+      let html = '<div class="nav-section">Menu Utama</div>';
+      html += '<a class="nav-item active" onclick="switchPanel(\'panelOverview\',this)"><span class="icon">📊</span>Overview</a>';
+      if (role==='admin'||role==='zi') {
+        html += '<div class="nav-section">Zona Integritas</div>';
+        html += '<a class="nav-item" onclick="switchPanel(\'panelWhistleblowing\',this);loadReports()"><span class="icon">📢</span>Whistle Blowing</a>';
+        html += '<a class="nav-item" onclick="switchPanel(\'panelSurveys\',this);loadSurveys()"><span class="icon">📋</span>Hasil Survei</a>';
+      }
+      if (role==='admin'||role==='rpplh') {
+        html += '<div class="nav-section">Layanan</div>';
+        html += '<a class="nav-item" onclick="switchPanel(\'panelServices\',this);loadServices()"><span class="icon">🌿</span>Layanan RPPLH</a>';
+      }
+      if (role==='admin') {
+        html += '<div class="nav-section">Website</div>';
+        html += '<a class="nav-item" onclick="switchPanel(\'panelContent\',this);loadContent()"><span class="icon">📰</span>Manajemen Konten</a>';
+      }
+      nav.innerHTML = html;
+    }
+
+    function switchPanel(id, el) {
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+      document.getElementById(id)?.classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+      if(el) el.classList.add('active');
+    }
+
+    function headers() { return {'Authorization':'Bearer '+AUTH_TOKEN,'Content-Type':'application/json'}; }
+    function headersAuth() { return {'Authorization':'Bearer '+AUTH_TOKEN}; }
+    function fmtDate(d){if(!d)return'-';return new Date(d).toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'});}
+
+    // ============ DASHBOARD STATS ============
+    async function loadDashboardStats() {
+      try {
+        const res = await fetch(API+'/api/admin/stats',{headers:headers()});
+        const d = await res.json();
+        let html = '';
+        if (USER_ROLE==='admin'||USER_ROLE==='zi') {
+          html += `<div class="stat-card"><div class="stat-icon">📢</div><div class="stat-value">${d.total||0}</div><div class="stat-label">Total WBS</div></div>`;
+          html += `<div class="stat-card"><div class="stat-icon">⏳</div><div class="stat-value">${d.pending||0}</div><div class="stat-label">WBS Pending</div></div>`;
+          html += `<div class="stat-card"><div class="stat-icon">📋</div><div class="stat-value">${d.totalSurveys||0}</div><div class="stat-label">Total Survei</div></div>`;
+        }
+        if (USER_ROLE==='admin'||USER_ROLE==='rpplh') {
+          html += `<div class="stat-card"><div class="stat-icon">🌿</div><div class="stat-value">${d.totalServices||0}</div><div class="stat-label">Total Layanan</div></div>`;
+          html += `<div class="stat-card"><div class="stat-icon">📩</div><div class="stat-value">${d.pendingServices||0}</div><div class="stat-label">Layanan Pending</div></div>`;
+        }
+        if (USER_ROLE==='admin') {
+          html += `<div class="stat-card"><div class="stat-icon">⭐</div><div class="stat-value">${d.totalSKM||0}</div><div class="stat-label">Survei Kepuasan</div></div>`;
+          html += `<div class="stat-card"><div class="stat-icon">🛡️</div><div class="stat-value">${d.totalPAK||0}</div><div class="stat-label">Survei Anti Korupsi</div></div>`;
+        }
+        document.getElementById('statsGrid').innerHTML = html || '<div class="empty-state"><div class="icon">📂</div><p>Belum ada data</p></div>';
+      } catch(e) { console.error(e); }
+    }
+
+    // ============ WHISTLEBLOWING ============
+    async function loadReports() {
+      try {
+        const status = document.getElementById('wbFilterStatus').value;
+        const search = document.getElementById('wbSearch').value;
+        const res = await fetch(API+`/api/admin/reports?status=${status}&search=${encodeURIComponent(search)}`,{headers:headers()});
+        const data = await res.json();
+        const tbody = document.getElementById('reportsTable');
+        if (!data.length) { tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:#555;padding:2rem">Belum ada laporan</td></tr>'; return; }
+        tbody.innerHTML = data.map(r=>`<tr>
+          <td style="font-family:monospace;color:#c9a227">${r.ticket_id}</td>
+          <td>${r.category}</td><td>${r.subject.substring(0,40)}</td>
+          <td><span class="status-badge status-${r.severity==='critical'?'dismissed':r.severity==='high'?'investigating':'pending'}">${r.severity}</span></td>
+          <td><span class="status-badge status-${r.status}">${r.status}</span></td>
+          <td>${fmtDate(r.created_at)}</td>
+          <td><button class="btn-sm btn-view" onclick="viewReport(${r.id})">Detail</button></td>
+        </tr>`).join('');
+      } catch(e) { console.error(e); }
+    }
+
+    async function viewReport(id) {
+      const res = await fetch(API+`/api/admin/reports/${id}`,{headers:headers()});
+      const r = await res.json();
+      document.getElementById('modalBody').innerHTML=`
+        <h3> Detail Laporan ${r.ticket_id}</h3>
+        <div class="detail-row"><div class="label">Kategori</div><div>${r.category}</div></div>
+        <div class="detail-row"><div class="label">Subjek</div><div>${r.subject}</div></div>
+        <div class="detail-row"><div class="label">Severity</div><div><span class="status-badge status-${r.severity==='high'?'investigating':'pending'}">${r.severity}</span></div></div>
+        <div class="detail-row"><div class="label">Status</div><div><span class="status-badge status-${r.status}">${r.status}</span></div></div>
+        <div class="detail-row"><div class="label">Lokasi</div><div>${r.location||'-'}</div></div>
+        <div class="detail-row"><div class="label">Tanggal Kejadian</div><div>${r.date_incident||'-'}</div></div>
+        <div class="detail-row"><div class="label">Deskripsi</div><div>${r.description}</div></div>
+        <hr style="border-color:rgba(255,255,255,0.06);margin:1rem 0">
+        <label>Update Status</label>
+        <select id="modalStatus" style="width:100%;margin-bottom:0.5rem">${['pending','investigating','resolved','dismissed'].map(s=>`<option value="${s}" ${r.status===s?'selected':''}>${s}</option>`).join('')}</select>
+        <label>Catatan Admin</label>
+        <textarea id="modalNotes">${r.admin_notes||''}</textarea>
+        <div class="modal-actions">
+          <button class="btn-secondary" onclick="closeModal()">Tutup</button>
+          <button class="btn-primary" onclick="updateReport(${r.id})">💾 Simpan</button>
+        </div>`;
+      document.getElementById('detailModal').classList.add('show');
+    }
+
+    async function updateReport(id) {
+      await fetch(API+`/api/admin/reports/${id}`,{method:'PUT',headers:headers(),body:JSON.stringify({status:document.getElementById('modalStatus').value,admin_notes:document.getElementById('modalNotes').value})});
+      closeModal(); loadReports();
+    }
+
+    // ============ SERVICES ============
+    async function loadServices() {
+      try {
+        const stype = document.getElementById('svcFilterType').value;
+        const status = document.getElementById('svcFilterStatus').value;
+        const search = document.getElementById('svcSearch').value;
+        const res = await fetch(API+`/api/admin/services?service_type=${stype}&status=${status}&search=${encodeURIComponent(search)}`,{headers:headers()});
+        const data = await res.json();
+        const tbody = document.getElementById('servicesTable');
+        if (!data.length) { tbody.innerHTML='<tr><td colspan="8" style="text-align:center;color:#555;padding:2rem">Belum ada permohonan layanan</td></tr>'; return; }
+        tbody.innerHTML = data.map(s=>`<tr>
+          <td style="font-family:monospace;color:#c9a227">${s.ticket_id}</td>
+          <td>${s.service_type==='bimtek'?'🎓 Bimtek':'💬 Konsultasi'}</td>
+          <td>${s.nama}</td>
+          <td>${s.provinsi||''} ${s.kabkota||''}</td>
+          <td>${s.metode==='online'?'💻 Online':'🏢 Offline'}</td>
+          <td><span class="status-badge status-${s.status}">${s.status}</span></td>
+          <td>${fmtDate(s.created_at)}</td>
+          <td><button class="btn-sm btn-view" onclick="viewService(${s.id})">Detail</button></td>
+        </tr>`).join('');
+      } catch(e) { console.error(e); }
+    }
+
+    async function viewService(id) {
+      const res = await fetch(API+`/api/admin/services/${id}`,{headers:headers()});
+      const s = await res.json();
+      let wm='', ws='';
+      if(s.waktu_pelaksanaan && s.waktu_pelaksanaan.includes('-')){
+        const pts = s.waktu_pelaksanaan.split('-');
+        wm = pts[0].trim(); ws = pts[1].trim();
+      }
+      document.getElementById('modalBody').innerHTML=`
+        <h3> Detail Layanan ${s.ticket_id}</h3>
+        <div class="detail-row"><div class="label">Jenis</div><div>${s.service_type==='bimtek'?'Bimtek RPPLH':'Konsultasi RPPLH'}</div></div>
+        <div class="detail-row"><div class="label">Pemohon</div><div>${s.nama} (${s.jabatan||'-'})</div></div>
+        <div class="detail-row"><div class="label">NIP</div><div>${s.nip||'-'}</div></div>
+        <div class="detail-row"><div class="label">Instansi</div><div>${s.instansi||'-'}</div></div>
+        <div class="detail-row"><div class="label">HP/WA</div><div>${s.hp||'-'}</div></div>
+        <div class="detail-row"><div class="label">Email</div><div>${s.email||'-'}</div></div>
+        <div class="detail-row"><div class="label">Daerah</div><div>${s.jenis_pemda} - ${s.provinsi||''} ${s.kabkota||''}</div></div>
+        <div class="detail-row"><div class="label">Metode</div><div>${s.metode==='online'?'Online (Zoom)':'Offline (Tatap Muka)'}</div></div>
+        <div class="detail-row"><div class="label">Kebutuhan</div><div>${s.kebutuhan||'-'}</div></div>
+        ${s.attachments?.length?`<div class="detail-row"><div class="label">Dokumen</div><div>${s.attachments.map(a=>`<a href="/uploads/${a.filename}" target="_blank" style="color:#3498db">${a.original_name}</a>`).join('<br>')}</div></div>`:''}
+        <hr style="border-color:rgba(255,255,255,0.06);margin:1rem 0">
+        <h3 style="font-size:0.95rem">⚙️ Kelola Layanan</h3>
+        <label>Status</label>
+        <select id="svcStatus">${['pending','scheduled','processing','completed','rejected'].map(st=>`<option value="${st}" ${s.status===st?'selected':''}>${st}</option>`).join('')}</select>
+        
+        <label>Tanggal & Waktu Pelaksanaan</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;margin-bottom:0.75rem">
+          <div><input type="date" id="svcTanggal" class="form-control" value="${s.tanggal_pelaksanaan||''}"></div>
+          <div><input type="time" id="svcWaktuMulai" class="form-control" title="Waktu Mulai" value="${wm}"></div>
+          <div><input type="time" id="svcWaktuSelesai" class="form-control" title="Waktu Selesai" value="${ws}"></div>
+        </div>
+        
+        <label>Lokasi Pelaksanaan</label>
+        <input type="text" id="svcLokasi" placeholder="Alamat/ruangan" value="${s.lokasi_pelaksanaan||''}">
+        <label>Link Zoom (jika online)</label>
+        <input type="text" id="svcZoom" placeholder="https://zoom.us/j/..." value="${s.link_zoom||''}">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem">
+          <div><label>Meeting ID</label><input type="text" id="svcZoomId" value="${s.zoom_id||''}"></div>
+          <div><label>Passcode</label><input type="text" id="svcZoomPass" value="${s.zoom_passcode||''}"></div>
+        </div>
+        <label>Catatan Admin</label>
+        <textarea id="svcNotes">${s.admin_notes||''}</textarea>
+
+        <hr style="border-color:rgba(255,255,255,0.06);margin:1rem 0">
+        <h3 style="font-size:0.95rem">📤 Upload Dokumen Balasan</h3>
+        <label>Surat Balasan / Undangan</label>
+        <input type="file" id="svcSuratBalasan" class="form-control" accept=".pdf,.doc,.docx" style="padding:0.5rem">
+        ${s.surat_balasan ? `<p style="font-size:0.8rem;color:var(--green-300);margin-top:0.25rem">File saat ini: <a href="/uploads/${s.surat_balasan}" target="_blank" style="color:#3498db">Lihat File</a></p>` : ''}
+        
+        ${s.service_type === 'konsultasi' ? `
+          <label style="margin-top:0.75rem">Surat Saran dan Masukan</label>
+          <input type="file" id="svcSuratSaran" class="form-control" accept=".pdf,.doc,.docx" style="padding:0.5rem">
+          ${s.surat_saran ? `<p style="font-size:0.8rem;color:var(--green-300);margin-top:0.25rem">File saat ini: <a href="/uploads/${s.surat_saran}" target="_blank" style="color:#3498db">Lihat File</a></p>` : ''}
+        ` : ''}
+
+        <div class="modal-actions">
+          <button class="btn-secondary" onclick="closeModal()">Tutup</button>
+          <button class="btn-primary" onclick="updateService(${s.id}, '${s.service_type}')">💾 Simpan Perubahan</button>
+        </div>`;
+      document.getElementById('detailModal').classList.add('show');
+    }
+
+    async function updateService(id, serviceType) {
+      const wm = document.getElementById('svcWaktuMulai').value;
+      const ws = document.getElementById('svcWaktuSelesai').value;
+      const waktu_pelaksanaan = (wm || ws) ? `${wm} - ${ws}` : '';
+
+      const fd = new FormData();
+      fd.append('status', document.getElementById('svcStatus').value);
+      fd.append('tanggal_pelaksanaan', document.getElementById('svcTanggal').value);
+      fd.append('waktu_pelaksanaan', waktu_pelaksanaan);
+      fd.append('lokasi_pelaksanaan', document.getElementById('svcLokasi').value);
+      fd.append('link_zoom', document.getElementById('svcZoom').value);
+      fd.append('zoom_id', document.getElementById('svcZoomId').value);
+      fd.append('zoom_passcode', document.getElementById('svcZoomPass').value);
+      fd.append('admin_notes', document.getElementById('svcNotes').value);
+
+      const sBalasan = document.getElementById('svcSuratBalasan');
+      if (sBalasan && sBalasan.files[0]) fd.append('surat_balasan', sBalasan.files[0]);
+
+      if (serviceType === 'konsultasi') {
+        const sSaran = document.getElementById('svcSuratSaran');
+        if (sSaran && sSaran.files[0]) fd.append('surat_saran', sSaran.files[0]);
+      }
+
+      await fetch(API+`/api/admin/services/${id}`, {method:'PUT', headers:headersAuth(), body:fd});
+      closeModal(); loadServices();
+    }
+
+    // ============ SURVEYS ============
+    async function loadSurveys() {
+      try {
+        const stype = document.getElementById('surveyFilter').value;
+        const res = await fetch(API+`/api/admin/surveys?survey_type=${stype}`,{headers:headers()});
+        const data = await res.json();
+        // Stats
+        const skm = data.filter(s=>s.survey_type==='kepuasan').length;
+        const pak = data.filter(s=>s.survey_type==='antikorupsi').length;
+        document.getElementById('surveyStats').innerHTML=`
+          <div class="stat-card"><div class="stat-icon">⭐</div><div class="stat-value">${skm}</div><div class="stat-label">Kepuasan Masyarakat</div></div>
+          <div class="stat-card"><div class="stat-icon">🛡️</div><div class="stat-value">${pak}</div><div class="stat-label">Persepsi Anti Korupsi</div></div>
+          <div class="stat-card"><div class="stat-icon"></div><div class="stat-value">${data.length}</div><div class="stat-label">Total Respons</div></div>`;
+        const tbody = document.getElementById('surveysTable');
+        if (!data.length) { tbody.innerHTML='<tr><td colspan="4" style="text-align:center;color:#555;padding:2rem">Belum ada respons survei</td></tr>'; return; }
+        tbody.innerHTML = data.map((s,i)=>`<tr>
+          <td>${i+1}</td>
+          <td>${s.survey_type==='kepuasan'?'⭐ Kepuasan Masyarakat':'🛡️ Persepsi Anti Korupsi'}</td>
+          <td>${fmtDate(s.created_at)}</td>
+          <td><button class="btn-sm btn-view" onclick='viewSurvey(${JSON.stringify(s).replace(/'/g,"&#39;")})'>Detail</button></td>
+        </tr>`).join('');
+      } catch(e) { console.error(e); }
+    }
+
+    function viewSurvey(s) {
+      const d = typeof s.data === 'string' ? JSON.parse(s.data) : s.data;
+      let html = `<h3>${s.survey_type==='kepuasan'?'⭐ Survei Kepuasan':'🛡️ Survei Anti Korupsi'} — ${fmtDate(s.created_at)}</h3>`;
+      for (const [key, val] of Object.entries(d)) {
+        html += `<div class="detail-row"><div class="label">${key}</div><div>${val}</div></div>`;
+      }
+      html += `<div class="modal-actions"><button class="btn-secondary" onclick="closeModal()">Tutup</button></div>`;
+      document.getElementById('modalBody').innerHTML = html;
+      document.getElementById('detailModal').classList.add('show');
+    }
+
+    // ============ CONTENT ============
+    async function loadContent() {
+      try {
+        const ctype = document.getElementById('contentFilter').value;
+        const res = await fetch(API+`/api/admin/content?content_type=${ctype}`,{headers:headers()});
+        const data = await res.json();
+        const tbody = document.getElementById('contentTable');
+        if (!data.length) { tbody.innerHTML='<tr><td colspan="5" style="text-align:center;color:#555;padding:2rem">Belum ada konten</td></tr>'; return; }
+        const typeMap={berita:' Berita',infografis:' Infografis',videografis:' Videografis',peraturan:' Peraturan'};
+        tbody.innerHTML = data.map((c,i)=>`<tr>
+          <td>${i+1}</td><td>${typeMap[c.content_type]||c.content_type}</td><td>${c.title}</td><td>${fmtDate(c.created_at)}</td>
+          <td><button class="btn-sm btn-danger" onclick="deleteContent(${c.id})">Hapus</button></td>
+        </tr>`).join('');
+      } catch(e) { console.error(e); }
+    }
+
+    function showContentModal() {
+      document.getElementById('modalBody').innerHTML=`
+        <h3>+ Tambah Konten Baru</h3>
+        <label>Jenis Konten</label>
+        <select id="newContentType" onchange="toggleContentInputs()">
+          <option value="berita"> Berita</option>
+          <option value="infografis"> Infografis</option>
+          <option value="videografis"> Videografis</option>
+          <option value="peraturan"> Peraturan</option>
+        </select>
+        
+        <label>Judul</label>
+        <input type="text" id="newContentTitle" placeholder="Judul konten">
+        
+        <div id="descGroup">
+          <label>Deskripsi / Teks Utama</label>
+          <textarea id="newContentDesc" rows="4"></textarea>
+        </div>
+        
+        <div id="urlGroup">
+          <label>URL / Tautan (Opsional)</label>
+          <input type="text" id="newContentUrl" placeholder="https://...">
+        </div>
+
+        <div id="uploadGroup">
+          <label id="uploadLabel">Upload File</label>
+          <input type="file" id="newContentFile" class="form-control" style="padding:0.5rem">
+          <p id="uploadHint" style="font-size:0.8rem;color:var(--gray-400);margin-top:0.25rem"></p>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-secondary" onclick="closeModal()">Batal</button>
+          <button class="btn-primary" onclick="addContent()">💾 Simpan Konten</button>
+        </div>`;
+      document.getElementById('detailModal').classList.add('show');
+      toggleContentInputs(); // init
+    }
+
+    function toggleContentInputs() {
+      const type = document.getElementById('newContentType').value;
+      const fInput = document.getElementById('newContentFile');
+      const fLabel = document.getElementById('uploadLabel');
+      const fHint = document.getElementById('uploadHint');
+      
+      fInput.value = ''; // clear
+      if (type === 'berita' || type === 'infografis') {
+        fLabel.textContent = 'Upload Foto / Gambar';
+        fInput.accept = 'image/*';
+        fHint.textContent = 'Format JPG, PNG, atau WEBP. Maks 5MB.';
+      } else if (type === 'peraturan') {
+        fLabel.textContent = 'Upload Dokumen Peraturan';
+        fInput.accept = '.pdf';
+        fHint.textContent = 'Format PDF. Maks 10MB.';
+      } else if (type === 'videografis') {
+        fLabel.textContent = 'Upload Video';
+        fInput.accept = 'video/*';
+        fHint.textContent = 'Format MP4, WebM. Maks 50MB. (Opsional jika menggunakan URL YouTube)';
+      }
+    }
+
+    async function addContent() {
+      const type = document.getElementById('newContentType').value;
+      const fd = new FormData();
+      fd.append('content_type', type);
+      fd.append('title', document.getElementById('newContentTitle').value);
+      fd.append('description', document.getElementById('newContentDesc').value);
+      fd.append('url', document.getElementById('newContentUrl').value);
+      
+      const fileInput = document.getElementById('newContentFile');
+      if (fileInput && fileInput.files[0]) {
+        if (type === 'berita' || type === 'infografis') {
+          fd.append('image', fileInput.files[0]);
+        } else {
+          fd.append('file', fileInput.files[0]);
+        }
+      }
+
+      const res = await fetch(API+'/api/admin/content', {method:'POST', headers:headersAuth(), body:fd});
+      if (res.ok) {
+        closeModal(); loadContent();
+      } else {
+        alert('Gagal menambah konten. Pastikan file sesuai format dan ukuran.');
+      }
+    }
+
+    async function deleteContent(id) {
+      if(!confirm('Yakin hapus konten ini?')) return;
+      await fetch(API+`/api/admin/content/${id}`,{method:'DELETE',headers:headersAuth()});
+      loadContent();
+    }
+
+    function closeModal() { document.getElementById('detailModal').classList.remove('show'); }
+    document.getElementById('detailModal').addEventListener('click', e => { if(e.target===document.getElementById('detailModal')) closeModal(); });
+
+    // ── THEME MANAGEMENT ──
+    function applyAdminTheme(isLight) {
+      if (isLight) {
+        document.documentElement.setAttribute('data-admin-theme', 'light');
+        if(document.getElementById('adminThemeIcon')) document.getElementById('adminThemeIcon').textContent = '☀️';
+        if(document.getElementById('loginThemeBtn')) document.getElementById('loginThemeBtn').textContent = '☀️';
+        if(document.getElementById('adminThemeToggle')) document.getElementById('adminThemeToggle').checked = true;
+        localStorage.setItem('admin-theme', 'light');
+      } else {
+        document.documentElement.removeAttribute('data-admin-theme');
+        if(document.getElementById('adminThemeIcon')) document.getElementById('adminThemeIcon').textContent = '🌙';
+        if(document.getElementById('loginThemeBtn')) document.getElementById('loginThemeBtn').textContent = '🌙';
+        if(document.getElementById('adminThemeToggle')) document.getElementById('adminThemeToggle').checked = false;
+        localStorage.setItem('admin-theme', 'dark');
+      }
+    }
+
+    function toggleAdminTheme() {
+      const isCurrentlyLight = document.documentElement.getAttribute('data-admin-theme') === 'light';
+      applyAdminTheme(!isCurrentlyLight);
+    }
+
+    // Apply saved or OS preference on page load
+    (function() {
+      const saved = localStorage.getItem('admin-theme');
+      if (saved === 'light') {
+        applyAdminTheme(true);
+      } else if (saved === 'dark') {
+        applyAdminTheme(false);
+      } else {
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyAdminTheme(!prefersDark);
+      }
+    })();
+  </script>
+</body>
+</html>
+

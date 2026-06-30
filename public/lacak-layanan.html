@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lacak Layanan RPPLH — Dit. PSDA Berkelanjutan</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+<style>
+    .track-input-group { display: flex; gap: 1rem; margin-top: 1rem; }
+    .track-input-group input { flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.05); color: var(--gray-100); font-size: 1rem; }
+    .track-input-group input:focus { outline: none; border-color: var(--gold-400); }
+    .track-input-group button { padding: 0.75rem 2rem; }
+    .track-result-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 2rem; margin-top: 2rem; }
+    .track-result-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .track-result-header h3 { font-size: 1.5rem; color: var(--gold-400); margin-bottom: 0.25rem; }
+    .track-result-header p { color: var(--gray-400); font-family: monospace; font-size: 1rem; }
+    .status-badge { padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+    .status-pending { background: rgba(241, 196, 15, 0.15); color: #f1c40f; }
+    .status-scheduled { background: rgba(155, 89, 182, 0.15); color: #9b59b6; }
+    .status-processing { background: rgba(52, 152, 219, 0.15); color: #3498db; }
+    .status-completed { background: rgba(46, 204, 113, 0.15); color: #2ecc71; }
+    .status-rejected { background: rgba(231, 76, 60, 0.15); color: #e74c3c; }
+    .track-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .track-grid-item { background: rgba(255, 255, 255, 0.03); padding: 1rem; border-radius: var(--radius-sm); }
+    .track-grid-item p:first-child { font-size: 0.85rem; color: var(--gray-400); margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 1px; }
+    .track-grid-item p:last-child { font-weight: 600; color: var(--gray-100); }
+    .admin-notes { background: rgba(201, 162, 39, 0.1); border: 1px solid rgba(201, 162, 39, 0.3); padding: 1.5rem; border-radius: var(--radius-sm); margin-bottom: 2rem; }
+    .admin-notes h4 { color: var(--gold-400); margin-bottom: 0.5rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .doc-link { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(52, 152, 219, 0.15); color: #3498db; border-radius: var(--radius-sm); text-decoration: none; margin-top: 0.5rem; font-size: 0.9rem; }
+    .doc-link:hover { background: rgba(52, 152, 219, 0.25); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo"><img src="assets/images/logo.png" alt="Logo" style="height:32px; width:auto;"></div>
+      <div class="nav-brand-text">
+        <h1>DIREKTORAT PSDAB</h1>
+        <p>Kementerian Lingkungan Hidup / BPLH</p>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="tentang.html">Tentang</a>
+      <div class="has-dropdown">
+        <a>Informasi</a>
+        <div class="dropdown">
+          <a href="informasi-peraturan.html"><span class="dropdown-icon">📜</span>Peraturan</a>
+          <a href="informasi-berita.html"><span class="dropdown-icon">📰</span>Berita</a>
+          <a href="informasi-infografis.html"><span class="dropdown-icon">📊</span>Infografis</a>
+          <a href="informasi-videografis.html"><span class="dropdown-icon">🎬</span>Videografis</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Layanan</a>
+        <div class="dropdown">
+          <a href="layanan-rpplh.html"><span class="dropdown-icon">🌿</span>RPPLH</a>
+          <a href="https://egis.kemenlh.go.id" target="_blank"><span class="dropdown-icon">🗺️</span>Spasial</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Survei</a>
+        <div class="dropdown">
+          <a href="survei-kepuasan.html"><span class="dropdown-icon">⭐</span>Kepuasan Masyarakat</a>
+          <a href="survei-antikorupsi.html"><span class="dropdown-icon">🛡️</span>Persepsi Anti Korupsi</a>
+          <a href="survei-whistleblowing.html"><span class="dropdown-icon">📢</span>Whistle Blowing</a>
+        </div>
+      </div>
+      
+      <button id="themeToggle" aria-label="Toggle Theme" style="background:transparent; border:none; color:var(--white); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; transition:var(--transition);" onmouseover="this.style.background='rgba(128,128,128,0.1)'" onmouseout="this.style.background='transparent'">
+        <span id="themeIcon">☀️</span>
+      </button>
+      <a class="nav-cta" href="tentang.html#kontak">Kontak</a>
+    </div>
+    <button aria-label="Buka menu" class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> <a href="layanan-rpplh.html">Layanan RPPLH</a> <span>/</span> <span>Lacak Layanan</span></div>
+      <h1>Lacak Status Layanan RPPLH</h1>
+      <p>Masukkan nomor tiket registrasi Anda untuk melihat jadwal konsultasi, status permohonan, link zoom, dan mengunduh surat balasan.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container" style="max-width: 800px; margin: 0 auto;">
+      
+      <div class="track-input-group fade-up">
+        <input type="text" id="ticketInput" placeholder="Masukkan Nomor Tiket (Misal: BT-XXXX-XXXX atau KS-XXXX-XXXX)">
+        <button class="btn-primary" onclick="trackService()">🔍 Lacak Layanan</button>
+      </div>
+
+      <div id="alertBox" class="alert hidden" style="margin-top: 1.5rem; padding: 1rem; border-radius: var(--radius-sm); text-align: center;"></div>
+
+      <div id="trackResult" class="track-result-card hidden fade-up">
+        <div class="track-result-header">
+          <div>
+            <h3 id="resType"></h3>
+            <p id="resTicket"></p>
+          </div>
+          <span id="resBadge" class="status-badge"></span>
+        </div>
+
+        <div class="track-grid">
+          <div class="track-grid-item">
+            <p>Tanggal Permohonan</p>
+            <p id="resDate"></p>
+          </div>
+          <div class="track-grid-item">
+            <p>Pembaruan Terakhir</p>
+            <p id="resUpdated"></p>
+          </div>
+        </div>
+
+        <div class="admin-notes" id="jadwalSection" style="display: none; background: rgba(52, 152, 219, 0.1); border-color: rgba(52, 152, 219, 0.3);">
+          <h4 style="color: #3498db;">📭… Jadwal Pelaksanaan</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+            <div><p style="font-size:0.8rem;color:var(--gray-400)">Tanggal</p><p id="resTglJadwal" style="font-weight:bold">-</p></div>
+            <div><p style="font-size:0.8rem;color:var(--gray-400)">Waktu</p><p id="resWaktuJadwal" style="font-weight:bold">-</p></div>
+            <div><p style="font-size:0.8rem;color:var(--gray-400)">Lokasi/Ruangan</p><p id="resLokasi" style="font-weight:bold">-</p></div>
+            <div><p style="font-size:0.8rem;color:var(--gray-400)">Link Zoom (Bila Online)</p>
+              <div id="resZoomBox">
+                <a id="resZoomLink" href="#" target="_blank" style="color:#3498db;text-decoration:none;font-weight:bold">Buka Zoom</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="adminNotesSection" class="admin-notes hidden">
+          <h4> Catatan Admin:</h4>
+          <p id="resAdminNotes" style="color: var(--gray-200); line-height: 1.6;"></p>
+        </div>
+
+        <h4 style="margin-bottom: 1rem; color: var(--green-100); font-size: 1.2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">📭¥ Dokumen Unduhan</h4>
+        <div id="docsArea" style="display: flex; gap: 1rem; flex-wrap: wrap;"></div>
+      </div>
+
+    </div>
+  </section>
+
+    <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" style="height:40px; width:auto;"><span class="footer-logo-text">Dit. PSDA Berkelanjutan</span></div>
+          <p class="footer-desc">Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup.</p>
+          <div class="footer-contact"><p>Menara Plaza Kuningan<br>Jl. H.R. Rasuna Said Kav. C11-14 Kuningan, Jakarta Selatan<br><a href="mailto:egis@kemenlh.go.id">egis@kemenlh.go.id</a><br>6282211210700<br>(021) 5720254</p></div>
+        </div>
+        <div class="footer-col"><h5>Tentang</h5><ul><li><a href="tentang.html">Profil Direktorat</a></li><li><a href="tentang.html#visi-misi">Visi &amp; Misi</a></li><li><a href="tentang.html#tupoksi">Tugas &amp; Fungsi</a></li><li><a href="tentang.html#struktur">Struktur Organisasi</a></li></ul></div>
+        <div class="footer-col"><h5>Layanan</h5><ul><li><a href="layanan-rpplh.html">RPPLH</a></li><li><a href="layanan-rpplh.html#bimtek">Bimtek RPPLH</a></li><li><a href="layanan-rpplh.html#konsultasi">Konsultasi RPPLH</a></li><li><a href="https://egis.kemenlh.go.id" target="_blank">Spasial</a></li></ul></div>
+        <div class="footer-col"><h5>Informasi</h5><ul><li><a href="informasi-peraturan.html">Peraturan</a></li><li><a href="informasi-berita.html">Berita</a></li><li><a href="informasi-infografis.html">Infografis</a></li><li><a href="informasi-videografis.html">Videografis</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup</p></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    const statusMap = { pending:'Menunggu Verifikasi', scheduled:'Dijadwalkan', processing:'Sedang Berlangsung', completed:'Selesai', rejected:'Ditolak/Dibatalkan' };
+
+    function showAlert(type, msg) {
+      const box = document.getElementById('alertBox');
+      box.style.display = 'block';
+      box.className = 'alert ' + (type === 'error' ? 'alert-error' : 'alert-success');
+      box.style.backgroundColor = type === 'error' ? 'rgba(231, 76, 60, 0.15)' : 'rgba(46, 204, 113, 0.15)';
+      box.style.color = type === 'error' ? '#e74c3c' : '#2ecc71';
+      box.style.border = '1px solid ' + (type === 'error' ? 'rgba(231, 76, 60, 0.3)' : 'rgba(46, 204, 113, 0.3)');
+      box.innerHTML = (type === 'error' ? '❌ ' : '✅ ') + msg;
+      setTimeout(() => { box.style.display = 'none'; }, 5000);
+    }
+
+    function fmtDate(d) { return d ? new Date(d).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}) : '-'; }
+    function fmtDateOnly(d) { return d ? new Date(d).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}) : '-'; }
+
+    async function trackService() {
+      const ticket = document.getElementById('ticketInput').value.trim();
+      if (!ticket) return showAlert('error','Silakan masukkan nomor tiket terlebih dahulu.');
+
+      try {
+        const res = await fetch('/api/services/track/' + ticket);
+        if (!res.ok) { 
+          showAlert('error','Permohonan tidak ditemukan. Periksa kembali nomor tiket Anda.'); 
+          document.getElementById('trackResult').classList.add('hidden'); 
+          return; 
+        }
+        const d = await res.json();
+
+        document.getElementById('alertBox').style.display = 'none';
+        document.getElementById('resType').textContent = d.service_type === 'bimtek' ? 'Bimtek RPPLH' : 'Konsultasi Teknis RPPLH';
+        document.getElementById('resTicket').textContent = d.ticket_id;
+        document.getElementById('resDate').textContent = fmtDate(d.created_at);
+        document.getElementById('resUpdated').textContent = fmtDate(d.updated_at);
+
+        const badge = document.getElementById('resBadge');
+        badge.textContent = statusMap[d.status] || d.status;
+        badge.className = 'status-badge status-' + d.status;
+
+        if (d.admin_notes) {
+          document.getElementById('resAdminNotes').textContent = d.admin_notes;
+          document.getElementById('adminNotesSection').classList.remove('hidden');
+        } else {
+          document.getElementById('adminNotesSection').classList.add('hidden');
+        }
+
+        if (d.tanggal_pelaksanaan || d.lokasi_pelaksanaan || d.link_zoom) {
+          document.getElementById('jadwalSection').style.display = 'block';
+          document.getElementById('resTglJadwal').textContent = d.tanggal_pelaksanaan ? fmtDateOnly(d.tanggal_pelaksanaan) : '-';
+          document.getElementById('resWaktuJadwal').textContent = d.waktu_pelaksanaan || '-';
+          document.getElementById('resLokasi').textContent = d.lokasi_pelaksanaan || '-';
+          
+          if (d.link_zoom) {
+            document.getElementById('resZoomBox').innerHTML = `<a id="resZoomLink" href="${d.link_zoom}" target="_blank" style="color:#3498db;text-decoration:none;font-weight:bold">Buka Link Zoom</a>`;
+          } else {
+            document.getElementById('resZoomBox').textContent = '-';
+          }
+        } else {
+          document.getElementById('jadwalSection').style.display = 'none';
+        }
+
+        const docsArea = document.getElementById('docsArea');
+        let docsHtml = '';
+        if (d.surat_balasan) docsHtml += `<a href="/uploads/${d.surat_balasan}" target="_blank" class="doc-link">📄 Unduh Surat Balasan</a>`;
+        if (d.surat_saran) docsHtml += `<a href="/uploads/${d.surat_saran}" target="_blank" class="doc-link">📄 Unduh Surat Saran / Masukan</a>`;
+        
+        if (!docsHtml) docsHtml = '<p style="color:var(--gray-500);font-size:0.9rem;font-style:italic;">Belum ada dokumen yang diterbitkan oleh Admin.</p>';
+        docsArea.innerHTML = docsHtml;
+
+        document.getElementById('trackResult').classList.remove('hidden');
+      } catch(e) { showAlert('error','Gagal menghubungi server. Silakan coba lagi nanti.'); }
+    }
+
+    document.getElementById('ticketInput').addEventListener('keydown', e => { if(e.key==='Enter') trackService(); });
+    const params = new URLSearchParams(location.search);
+    if (params.get('ticket')) { document.getElementById('ticketInput').value = params.get('ticket'); trackService(); }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Layanan Data Spasial Sumber Daya Alam Indonesia" />
+  <title>Layanan Spasial — Dit. PSDA Berkelanjutan</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo"><img src="assets/images/logo.png" alt="Logo" style="height:32px; width:auto;"></div>
+      <div class="nav-brand-text">
+        <h1>DIREKTORAT PSDAB</h1>
+        <p>Kementerian Lingkungan Hidup / BPLH</p>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="tentang.html">Tentang</a>
+      <div class="has-dropdown">
+        <a>Informasi</a>
+        <div class="dropdown">
+          <a href="informasi-peraturan.html"><span class="dropdown-icon">📜</span>Peraturan</a>
+          <a href="informasi-berita.html"><span class="dropdown-icon">📰</span>Berita</a>
+          <a href="informasi-infografis.html"><span class="dropdown-icon">📊</span>Infografis</a>
+          <a href="informasi-videografis.html"><span class="dropdown-icon">🎬</span>Videografis</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a class="active">Layanan</a>
+        <div class="dropdown">
+          <a href="layanan-rpplh.html"><span class="dropdown-icon">🌿</span>RPPLH</a>
+          <a href="https://egis.kemenlh.go.id" target="_blank"><span class="dropdown-icon">🗺️</span>Spasial</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Survei</a>
+        <div class="dropdown">
+          <a href="survei-kepuasan.html"><span class="dropdown-icon">⭐</span>Kepuasan Masyarakat</a>
+          <a href="survei-antikorupsi.html"><span class="dropdown-icon">🛡️</span>Persepsi Anti Korupsi</a>
+          <a href="survei-whistleblowing.html"><span class="dropdown-icon">📢</span>Whistle Blowing</a>
+        </div>
+      </div>
+      
+      <button id="themeToggle" aria-label="Toggle Theme" style="background:transparent; border:none; color:var(--white); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; transition:var(--transition);" onmouseover="this.style.background='rgba(128,128,128,0.1)'" onmouseout="this.style.background='transparent'">
+        <span id="themeIcon">☀️</span>
+      </button>
+      <a class="nav-cta" href="tentang.html#kontak">Kontak</a>
+    </div>
+    <button aria-label="Buka menu" class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="nav-drawer" id="navDrawer">
+    <a class="drawer-item" href="index.html">Beranda</a>
+    <a class="drawer-item" href="tentang.html">Tentang</a>
+    <div class="drawer-group-label">Informasi</div>
+    <div class="drawer-sub">
+      <a href="informasi-peraturan.html">📜 Peraturan</a>
+      <a href="informasi-berita.html">📰 Berita</a>
+      <a href="informasi-infografis.html">📊 Infografis</a>
+      <a href="informasi-videografis.html">🎬 Videografis</a>
+    </div>
+    <div class="drawer-group-label">Layanan</div>
+    <div class="drawer-sub">
+      <a href="layanan-rpplh.html">🌿 RPPLH</a>
+      <a href="https://egis.kemenlh.go.id" target="_blank">🗺️ Spasial</a>
+    </div>
+    <div class="drawer-group-label">Survei</div>
+    <div class="drawer-sub">
+      <a href="survei-kepuasan.html">⭐ Kepuasan Masyarakat</a>
+      <a href="survei-antikorupsi.html">🛡️ Anti Korupsi</a>
+      <a href="survei-whistleblowing.html">📢 Whistle Blowing</a>
+    </div>
+    <a class="drawer-cta" href="tentang.html#kontak">Kontak</a>
+  </div>
+
+  <!-- ── PAGE HERO ── -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Beranda</a> <span>/</span> <span>Layanan</span> <span>/</span> <span>Spasial</span>
+      </div>
+      <h1>Data Spasial Sumber Daya Alam</h1>
+      <p>Data geospasial SDA Indonesia untuk mendukung perencanaan tata ruang dan pengelolaan lingkungan hidup berkelanjutan.</p>
+    </div>
+  </div>
+
+  <!-- ── MAIN CONTENT ── -->
+  <section class="section">
+    
+    <div style="background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-xl); padding: 3rem; text-align: center; margin-bottom: 4rem;" class="fade-up">
+      <div style="font-size: 4rem; margin-bottom: 1rem;">🗺️</div>
+      <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem;">EGIS Kementerian Lingkungan Hidup</h2>
+      <p style="color: var(--gray-300); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem; line-height: 1.6;">
+        Seluruh data spasial dan layanan pemetaan (WebGIS) terkait lingkungan hidup dan kehutanan terintegrasi pada portal resmi EGIS Kementerian Lingkungan Hidup.
+      </p>
+      <a href="https://egis.kemenlh.go.id" target="_blank" class="btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;">
+        Buka Portal EGIS KLH 
+        <svg fill="none" height="20" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="20" style="margin-left: 8px;"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+      </a>
+    </div>
+
+    <div class="section-label"><span></span> Fitur Layanan</div>
+    <h2 class="section-title">Informasi Geospasial yang Tersedia</h2>
+
+    <div class="layanan-grid" style="margin-top: 2rem;">
+      <div class="layanan-card fade-up">
+        <div class="card-icon">🏞️</div>
+        <div class="card-title">Peta Kawasan Konservasi</div>
+        <div class="card-desc">Informasi spasial mengenai batas dan zonasi kawasan pelestarian alam, suaka alam, dan taman buru di seluruh Indonesia.</div>
+      </div>
+      <div class="layanan-card fade-up">
+        <div class="card-icon">🌳</div>
+        <div class="card-title">Data Penutupan Lahan</div>
+        <div class="card-desc">Peta tutupan lahan nasional yang diperbarui secara berkala, memuat informasi luasan hutan, lahan kritis, dan non-hutan.</div>
+      </div>
+      <div class="layanan-card fade-up">
+        <div class="card-icon">📭š</div>
+        <div class="card-title">Atlas Sumber Daya Alam</div>
+        <div class="card-desc">Kompilasi peta tematik persebaran potensi sumber daya alam strategis sebagai acuan penyusunan RPPLH dan RTRW.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── FOOTER ── -->
+    <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" style="height:40px; width:auto;"><span class="footer-logo-text">Dit. PSDA Berkelanjutan</span></div>
+          <p class="footer-desc">Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup.</p>
+          <div class="footer-contact"><p>Menara Plaza Kuningan<br>Jl. H.R. Rasuna Said Kav. C11-14 Kuningan, Jakarta Selatan<br><a href="mailto:egis@kemenlh.go.id">egis@kemenlh.go.id</a><br>6282211210700<br>(021) 5720254</p></div>
+        </div>
+        <div class="footer-col"><h5>Tentang</h5><ul><li><a href="tentang.html">Profil Direktorat</a></li><li><a href="tentang.html#visi-misi">Visi &amp; Misi</a></li><li><a href="tentang.html#tupoksi">Tugas &amp; Fungsi</a></li><li><a href="tentang.html#struktur">Struktur Organisasi</a></li></ul></div>
+        <div class="footer-col"><h5>Layanan</h5><ul><li><a href="layanan-rpplh.html">RPPLH</a></li><li><a href="layanan-rpplh.html#bimtek">Bimtek RPPLH</a></li><li><a href="layanan-rpplh.html#konsultasi">Konsultasi RPPLH</a></li><li><a href="https://egis.kemenlh.go.id" target="_blank">Spasial</a></li></ul></div>
+        <div class="footer-col"><h5>Informasi</h5><ul><li><a href="informasi-peraturan.html">Peraturan</a></li><li><a href="informasi-berita.html">Berita</a></li><li><a href="informasi-infografis.html">Infografis</a></li><li><a href="informasi-videografis.html">Videografis</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup</p></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
+

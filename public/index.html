@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Website resmi Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan - Kementerian Lingkungan Hidup / BPLH" />
+  <title>DIREKTORAT PSDAB — Beranda</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo"><img src="assets/images/logo.png" alt="Logo" style="height:32px; width:auto;"></div>
+      <div class="nav-brand-text">
+        <h1>DIREKTORAT PSDAB</h1>
+        <p>Kementerian Lingkungan Hidup / BPLH</p>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Beranda</a>
+      <a href="tentang.html">Tentang</a>
+      <div class="has-dropdown">
+        <a>Informasi</a>
+        <div class="dropdown">
+          <a href="informasi-peraturan.html"><span class="dropdown-icon">📜</span>Peraturan</a>
+          <a href="informasi-berita.html"><span class="dropdown-icon">📰</span>Berita</a>
+          <a href="informasi-infografis.html"><span class="dropdown-icon">📊</span>Infografis</a>
+          <a href="informasi-videografis.html"><span class="dropdown-icon">🎬</span>Videografis</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Layanan</a>
+        <div class="dropdown">
+          <a href="layanan-rpplh.html"><span class="dropdown-icon">🌿</span>RPPLH</a>
+          <a href="https://egis.kemenlh.go.id" target="_blank"><span class="dropdown-icon">🗺️</span>Spasial</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a>Survei</a>
+        <div class="dropdown">
+          <a href="survei-kepuasan.html"><span class="dropdown-icon">⭐</span>Kepuasan Masyarakat</a>
+          <a href="survei-antikorupsi.html"><span class="dropdown-icon">🛡️</span>Persepsi Anti Korupsi</a>
+          <a href="survei-whistleblowing.html"><span class="dropdown-icon">📢</span>Whistle Blowing</a>
+        </div>
+      </div>
+      
+      <button id="themeToggle" aria-label="Toggle Theme" style="background:transparent; border:none; color:var(--white); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; transition:var(--transition);" onmouseover="this.style.background='rgba(128,128,128,0.1)'" onmouseout="this.style.background='transparent'">
+        <span id="themeIcon">☀️</span>
+      </button>
+      <a class="nav-cta" href="tentang.html#kontak">Kontak</a>
+    </div>
+    <button aria-label="Buka menu" class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="nav-drawer" id="navDrawer">
+    <a class="drawer-item active" href="index.html">Beranda</a>
+    <a class="drawer-item" href="tentang.html">Tentang</a>
+    <div class="drawer-group-label">Informasi</div>
+    <div class="drawer-sub">
+      <a href="informasi-peraturan.html">📜 Peraturan</a>
+      <a href="informasi-berita.html">📰 Berita</a>
+      <a href="informasi-infografis.html">📊 Infografis</a>
+      <a href="informasi-videografis.html">🎬 Videografis</a>
+    </div>
+    <div class="drawer-group-label">Layanan</div>
+    <div class="drawer-sub">
+      <a href="layanan-rpplh.html">🌿 RPPLH</a>
+      <a href="https://egis.kemenlh.go.id" target="_blank">🗺️ Spasial</a>
+    </div>
+    <div class="drawer-group-label">Survei</div>
+    <div class="drawer-sub">
+      <a href="survei-kepuasan.html">⭐ Kepuasan Masyarakat</a>
+      <a href="survei-antikorupsi.html">🛡️ Anti Korupsi</a>
+      <a href="survei-whistleblowing.html">📢 Whistle Blowing</a>
+    </div>
+    <a class="drawer-cta" href="tentang.html#kontak">Kontak</a>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="beranda">
+    <div class="hero-bg-img hero-bg-dark" style="background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2000'); opacity: 0.35;"></div>
+    <div class="hero-bg-img hero-bg-light" style="background-image: url('assets/images/hero_light.jpg'); opacity: 0;"></div>
+    <div class="hero-grid" style="opacity: 0.5;"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+
+    <div class="hero-content">
+      <!-- LEFT -->
+      <div class="hero-left fade-up">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span> Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan
+        </div>
+        <h1 class="hero-title">Sumber Daya Lestari,
+Pembangunan
+<em>Berkelanjutan</em></h1>
+        <p class="hero-desc">Sistem terpadu Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan untuk memfasilitasi penyusunan RPPLH, integrasi data keruangan (EGIS), dan pemetaan Informasi Geospasial Tematik secara transparan dan akuntabel.</p>
+        <div class="hero-mini-stats">
+          <div class="hero-mini-stat"><span class="hero-mini-icon">🌍</span> Tata Kelola Terpadu</div>
+          <div class="hero-mini-stat"><span class="hero-mini-icon">📊</span> Integrasi Data EGIS</div>
+          <div class="hero-mini-stat"><span class="hero-mini-icon">🎯</span> Standar IGT Nasional</div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn-primary" href="layanan-rpplh.html">→ Layanan Online</a>
+          <a class="btn-play" href="tentang.html">▷ Profil Direktorat</a>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="hero-right-grid fade-up" style="animation-delay:0.2s">
+        <div class="hero-stat-grid hero-stat-grid-3">
+          <div class="hero-stat-card active-card">
+            <div class="hero-stat-icon">📋</div>
+            <div class="hero-stat-label">Produk Unggulan</div>
+            <div class="hero-stat-num">RPPLH</div>
+            <div style="font-size:0.65rem; color:var(--gray-400); margin-top:2px;">Nasional</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-icon">🗺️</div>
+            <div class="hero-stat-label">Platform Geospasial</div>
+            <div class="hero-stat-num">EGIS</div>
+            <div style="font-size:0.65rem; color:var(--gray-400); margin-top:2px;">Lingkungan Hidup</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-icon">🌿</div>
+            <div class="hero-stat-label">Informasi Geospasial</div>
+            <div class="hero-stat-num">16 IGT</div>
+            <div style="font-size:0.65rem; color:var(--gray-400); margin-top:2px;">Tematik</div>
+          </div>
+        </div>
+        <!-- Quick Help Card -->
+        <div class="hero-help-card">
+          <div class="hero-help-title">Butuh Bantuan Cepat?</div>
+          <div class="hero-help-desc">Hubungi layanan pengaduan dan informasi masyarakat 24 jam</div>
+          <div class="hero-help-actions">
+            <a href="tentang.html#kontak" class="hero-help-btn-solid">Call Center</a>
+            <a href="survei-kepuasan.html" class="hero-help-btn-ghost">Pengaduan →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LAYANAN UTAMA ── -->
+  <section class="svc-section">
+    <div class="svc-inner">
+      <div class="svc-header fade-up">
+        <div class="section-label"><span></span> Layanan Utama</div>
+        <h2 class="section-title">Satu Platform, <em>Dua Pilar Layanan</em></h2>
+        <p class="section-desc">Direktorat PSDA Berkelanjutan menyediakan layanan unggulan untuk mendukung pengelolaan sumber daya alam yang berkelanjutan di seluruh Indonesia.</p>
+      </div>
+      <div class="svc-cards">
+
+        <!-- Card 1: RPPLH -->
+        <a class="svc-card fade-up" href="layanan-rpplh.html">
+           <div class="svc-card-img" style="background-image:url('assets/images/rpplh.jpg'); background-size:cover; background-position:center;"></div>
+          <div class="svc-card-overlay"></div>
+          <div class="svc-card-body">
+            <div class="svc-card-badge">
+              <span class="svc-badge-icon">🌿</span>
+              <span>Layanan RPPLH</span>
+            </div>
+            <h3 class="svc-card-title">Rencana Perlindungan &amp; Pengelolaan Lingkungan Hidup</h3>
+            <p class="svc-card-desc">Fasilitasi penyusunan RPPLH, bimbingan teknis, dan penerbitan Surat Saran &amp; Masukan resmi untuk Pemerintah Daerah Provinsi dan Kabupaten/Kota seluruh Indonesia.</p>
+            <div class="svc-card-links">
+              <span class="svc-btn-primary">Lihat Layanan RPPLH <svg fill="none" height="14" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              <span class="svc-btn-ghost">Bimtek &amp; Konsultasi →</span>
+            </div>
+          </div>
+          <div class="svc-card-number">01</div>
+        </a>
+
+        <!-- Card 2: EGIS / Spasial -->
+        <a class="svc-card svc-card-reverse fade-up" href="https://egis.kemenlh.go.id" target="_blank">
+          <div class="svc-card-img" style="background-image:url('assets/images/infografis-indonesia.jpg'); background-size:cover; background-position:center;"></div>
+          <div class="svc-card-overlay svc-overlay-blue"></div>
+          <div class="svc-card-body">
+            <div class="svc-card-badge svc-badge-gold">
+              <span class="svc-badge-icon">🗺️</span>
+              <span>Layanan Spasial — EGIS</span>
+            </div>
+            <h3 class="svc-card-title">Data Geospasial &amp; Informasi Tematik Lingkungan</h3>
+            <p class="svc-card-desc">Akses 16 Informasi Geospasial Tematik (IGT) lingkungan hidup berbasis GIS melalui platform EGIS untuk perencanaan dan pengelolaan wilayah yang presisi.</p>
+            <div class="svc-card-links">
+              <span class="svc-btn-primary svc-btn-gold">Buka Platform EGIS <svg fill="none" height="14" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              <span class="svc-btn-ghost">16 IGT Tematik →</span>
+            </div>
+          </div>
+          <div class="svc-card-number">02</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SURVEI & ASPIRASI ── -->
+  <section class="cta-banner">
+    <div class="section-layanan">
+      <div class="layanan-grid-2">
+        <div class="link-card fade-up">
+          <h3>🗳️ Bantu Kami Tingkatkan Layanan</h3>
+          <p>Sampaikan pengalaman dan masukan Anda tentang layanan Direktorat PSDA Berkelanjutan melalui survei kepuasan kami.</p>
+          <div class="survey-btns">
+            <a class="btn-survey" href="survei-kepuasan.html">⭐ Kepuasan Masyarakat</a>
+            <a class="btn-survey" href="survei-antikorupsi.html">🛡️ Persepsi Anti Korupsi</a>
+            <a class="btn-survey" href="survei-whistleblowing.html">📢 Whistle Blowing</a>
+          </div>
+        </div>
+        <div class="link-card fade-up">
+          <h3>📣 Layanan Aspirasi dan Pengaduan</h3>
+          <p>Sampaikan aspirasi dan pengaduan Anda melalui platform resmi pemerintah SP4N LAPOR yang terintegrasi secara nasional.</p>
+          <div class="survey-btns">
+            <a class="btn-survey" href="https://www.lapor.go.id" target="_blank">🔗 SP4N LAPOR</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BERITA & INFORMASI ── -->
+  <section class="news-section">
+    <div class="news-section-inner">
+      <div class="news-header fade-up">
+        <h2>Berita &amp; Informasi</h2>
+        <div class="news-header-line"></div>
+      </div>
+
+      <div class="news-grid" id="homeNewsGrid">
+        <div style="text-align:center;grid-column:1/-1;color:#888;">Memuat berita...</div>
+      </div>
+
+      <div class="news-more-container fade-up">
+        <a href="informasi-berita.html" class="news-more-btn" id="btnMoreNews">Lihat selengkapnya</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EKOSISTEM DIGITAL ── -->
+  <div class="links-section">
+    <div class="links-inner">
+      <div class="section-label"><span></span> Ekosistem Digital</div>
+      <h2 class="section-title">Sistem Informasi Lingkungan Hidup Lainnya</h2>
+      <div class="links-grid">
+        <a class="link-card-ext fade-up" href="https://sierra.kemenlh.go.id" target="_blank"><div class="link-card-icon">🌍</div><div class="link-card-name">Si PDLKWS</div><div class="link-card-desc">Sistem Informasi PDLKWS</div></a>
+        <a class="link-card-ext fade-up" href="https://amdalnet.kemenlh.go.id" target="_blank"><div class="link-card-icon">📋</div><div class="link-card-name">Amdalnet</div><div class="link-card-desc">Sistem Informasi AMDAL</div></a>
+        <a class="link-card-ext fade-up" href="https://proper.menlhk.go.id" target="_blank"><div class="link-card-icon">⭐</div><div class="link-card-name">PROPER</div><div class="link-card-desc">Penilaian Kinerja Lingkungan</div></a>
+        <a class="link-card-ext fade-up" href="https://egis.kemenlh.go.id" target="_blank"><div class="link-card-icon">🗺️</div><div class="link-card-name">EGIS</div><div class="link-card-desc">Data Spasial Lingkungan</div></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MAKLUMAT ── -->
+  <section class="section maklumat-section">
+    <div class="section-inner">
+      <div class="section-label"><span></span> Integritas & Layanan</div>
+      <h2 class="section-title">Maklumat</h2>
+      <p class="section-desc">Komitmen dan pernyataan resmi Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan</p>
+
+      <div class="maklumat-grid fade-up">
+
+        <!-- Card 1: Komitmen Pelaksanaan -->
+        <div class="maklumat-card" style="padding: 0; background: transparent; border: none; box-shadow: var(--shadow-md);">
+          <img class="maklumat-img" src="assets/images/maklumat-komitmen.png" alt="Komitmen Pelaksanaan ZI" style="width: 100%; height: auto; border-radius: var(--radius-lg); display: block;" onerror="this.onerror=null; this.src='https://placehold.co/800x600/16a34a/FFF?text=Mohon+Simpan+Gambar+Sebagai+\nassets/images/maklumat-komitmen.png';">
+        </div>
+
+        <!-- Card 2: Maklumat Pelayanan -->
+        <div class="maklumat-card" style="padding: 0; background: transparent; border: none; box-shadow: var(--shadow-md);">
+          <img class="maklumat-img" src="assets/images/maklumat-pelayanan.png" alt="Maklumat Pelayanan" style="width: 100%; height: auto; border-radius: var(--radius-lg); display: block;" onerror="this.onerror=null; this.src='https://placehold.co/800x600/ea580c/FFF?text=Mohon+Simpan+Gambar+Sebagai+\nassets/images/maklumat-pelayanan.png';">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CORE VALUES ── -->
+  <section class="logo-partners-section">
+    <div class="logo-partners-inner">
+      <h3 class="logo-partners-title">Core Values ASN BerAKHLAK</h3>
+      <p class="logo-partners-sub">Komitmen ASN Direktorat PSDA Berkelanjutan dalam melayani masyarakat dengan penuh integritas</p>
+      <div class="logo-partners-grid">
+        <div class="logo-partner-item"><div class="value-icon">🙏</div><span class="logo-partner-caption">Berorientasi<br>Pelayanan</span></div>
+        <div class="logo-partners-divider"></div>
+        <div class="logo-partner-item"><div class="value-icon">💎</div><span class="logo-partner-caption">Akuntabel</span></div>
+        <div class="logo-partners-divider"></div>
+        <div class="logo-partner-item"><div class="value-icon">🤝</div><span class="logo-partner-caption">Harmonis</span></div>
+        <div class="logo-partners-divider"></div>
+        <div class="logo-partner-item"><div class="value-icon">🏆</div><span class="logo-partner-caption">Loyal</span></div>
+        <div class="logo-partners-divider"></div>
+        <div class="logo-partner-item"><div class="value-icon">🚀</div><span class="logo-partner-caption">Adaptif</span></div>
+        <div class="logo-partners-divider"></div>
+        <div class="logo-partner-item"><div class="value-icon">🌟</div><span class="logo-partner-caption">Kolaboratif</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" style="height:40px; width:auto;"><span class="footer-logo-text">Dit. PSDA Berkelanjutan</span></div>
+          <p class="footer-desc">Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup.</p>
+          <div class="footer-contact"><p>Menara Plaza Kuningan<br>Jl. H.R. Rasuna Said Kav. C11-14 Kuningan, Jakarta Selatan<br><a href="mailto:egis@kemenlh.go.id">egis@kemenlh.go.id</a><br>6282211210700</p></div>
+        </div>
+        <div class="footer-col"><h5>Tentang</h5><ul><li><a href="tentang.html">Profil Direktorat</a></li><li><a href="tentang.html#visi-misi">Visi &amp; Misi</a></li><li><a href="tentang.html#tupoksi">Tugas &amp; Fungsi</a></li><li><a href="tentang.html#struktur">Struktur Organisasi</a></li></ul></div>
+        <div class="footer-col"><h5>Layanan</h5><ul><li><a href="layanan-rpplh.html">RPPLH</a></li><li><a href="layanan-rpplh.html#bimtek">Bimtek RPPLH</a></li><li><a href="layanan-rpplh.html#konsultasi">Konsultasi RPPLH</a></li><li><a href="https://egis.kemenlh.go.id" target="_blank">Spasial</a></li></ul></div>
+        <div class="footer-col"><h5>Informasi</h5><ul><li><a href="informasi-peraturan.html">Peraturan</a></li><li><a href="informasi-berita.html">Berita</a></li><li><a href="informasi-infografis.html">Infografis</a></li><li><a href="informasi-videografis.html">Videografis</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Direktorat Penyelenggaraan Sumber Daya Alam Berkelanjutan — Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup</p></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    (async () => {
+      try {
+        const resBerita = await fetch('/api/content?content_type=berita');
+        const beritaData = await resBerita.json();
+        const grid = document.getElementById('homeNewsGrid');
+        if (beritaData && beritaData.length > 0) {
+          const html = beritaData.slice(0, 4).map(b => {
+            const dt = new Date(b.created_at).toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
+            const img = b.image ? '/uploads/' + b.image : 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=500&q=80';
+            const link = b.url || `baca-berita.html?id=${b.id}`;
+            const target = b.url ? 'target="_blank"' : '';
+            return `
+              <a href="${link}" ${target} class="news-card">
+                <div class="news-img" style="background-image: url('${img}')"></div>
+                <div class="news-content">
+                  <div class="news-title">${b.title}</div>
+                  <div class="news-date">${dt}</div>
+                </div>
+              </a>`;
+          }).join('');
+          grid.innerHTML = html;
+        } else {
+          grid.innerHTML = '<div style="text-align:center;grid-column:1/-1;color:#888;">Belum ada berita.</div>';
+        }
+      } catch(e) {
+        document.getElementById('homeNewsGrid').innerHTML = '<div style="text-align:center;grid-column:1/-1;color:#e74c3c;">Gagal memuat berita.</div>';
+      }
+    })();
+  </script>
+</body>
+</html>
