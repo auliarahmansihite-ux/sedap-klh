@@ -1,0 +1,13 @@
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+.git
+.gitignore
+.env
+sedap-klh.db
+sedap-klh.db-shm
+sedap-klh.db-wal
+uploads/*
+!uploads/.gitkeep
+backups/

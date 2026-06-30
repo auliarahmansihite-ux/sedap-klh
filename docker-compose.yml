@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  sedap-klh:
+    build: .
+    container_name: sedap-klh-app
+    restart: unless-stopped
+    ports:
+      # Format: "PortVPS:PortContainer"
+      # Kita ekspos di port 3001 di VPS (karena 3000 sudah dipakai)
+      - "3001:3000"
+    volumes:
+      # Mount folder uploads agar file tidak hilang saat container direstart
+      - ./uploads:/usr/src/app/uploads
+      # Mount database
+      - ./sedap-klh.db:/usr/src/app/sedap-klh.db
+      - ./sedap-klh.db-shm:/usr/src/app/sedap-klh.db-shm
+      - ./sedap-klh.db-wal:/usr/src/app/sedap-klh.db-wal
+      # Mount konfigurasi .env
+      - ./.env:/usr/src/app/.env
+    environment:
+      - NODE_ENV=production
