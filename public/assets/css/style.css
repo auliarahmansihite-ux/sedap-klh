@@ -181,7 +181,7 @@ nav.scrolled {
 
 .nav-cta {
   padding: 0.5rem 1.2rem !important;
-  background: linear-gradient(135deg, var(--green-500), var(--green-400)) !important;
+  background: linear-gradient(135deg, #3fd174, #1aa74e) !important;
   color: var(--white) !important;
   border-radius: 50px !important;
   font-weight: 600 !important;
@@ -363,7 +363,7 @@ nav.scrolled {
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 0.85rem 1.8rem;
-  background: linear-gradient(135deg, var(--green-500), var(--green-400));
+  background: linear-gradient(135deg, #3fd174, #1aa74e);
   color: var(--white); border-radius: 50px;
   font-weight: 700; font-size: 0.95rem;
   box-shadow: 0 4px 20px rgba(36, 100, 36, 0.5);
@@ -720,7 +720,7 @@ nav.scrolled {
 .svc-btn-primary {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 0.65rem 1.4rem;
-  background: linear-gradient(135deg, var(--green-500), var(--green-400));
+  background: linear-gradient(135deg, #3fd174, #1aa74e);
   color: var(--white);
   border-radius: 50px;
   font-size: 0.85rem; font-weight: 700;
@@ -732,7 +732,7 @@ nav.scrolled {
   transform: translateX(3px);
 }
 .svc-btn-gold {
-  background: linear-gradient(135deg, var(--gold-500), var(--gold-400)) !important;
+  background: linear-gradient(135deg, #f97c15, #ca6008)!important;
   box-shadow: 0 4px 16px rgba(201,162,39,0.4) !important;
 }
 .svc-card:hover .svc-btn-gold {
