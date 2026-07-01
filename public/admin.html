@@ -792,8 +792,8 @@
       } else if (saved === 'dark') {
         applyAdminTheme(false);
       } else {
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        applyAdminTheme(!prefersDark);
+        // Default to light mode
+        applyAdminTheme(true);
       }
     })();
   </script>

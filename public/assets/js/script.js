@@ -295,9 +295,8 @@ if (themeToggle) {
   } else if (savedTheme === 'dark') {
     setTheme(true);
   } else {
-    // Check OS preference
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(prefersDark);
+    // Default to light mode
+    setTheme(false);
   }
 
   themeToggle.addEventListener('click', () => {
