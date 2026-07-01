@@ -301,7 +301,33 @@ app.post('/api/admin/logout', authMiddleware, (req, res) => {
   }
 });
 
-// ============ WHISTLEBLOWING PUBLIC API ============
+// ============ GANTI PASSWORD ============
+app.post('/api/admin/change-password', authMiddleware, (req, res) => {
+  try {
+    const { current_password, new_password } = req.body;
+    if (!current_password || !new_password) {
+      return res.status(400).json({ error: 'Password lama dan baru wajib diisi' });
+    }
+    if (new_password.length < 8) {
+      return res.status(400).json({ error: 'Password baru minimal 8 karakter' });
+    }
+    const admin = db.prepare('SELECT * FROM admins WHERE id = ?').get(req.user.id);
+    if (!admin || !bcrypt.compareSync(current_password, admin.password)) {
+      return res.status(401).json({ error: 'Password lama tidak sesuai' });
+    }
+    const hashed = bcrypt.hashSync(new_password, 10);
+    db.prepare('UPDATE admins SET password = ? WHERE id = ?').run(hashed, req.user.id);
+    // Hapus semua sesi lain (paksa login ulang di perangkat lain)
+    const currentToken = req.headers['authorization']?.replace('Bearer ', '');
+    db.prepare('DELETE FROM sessions WHERE user_id = ? AND token != ?').run(req.user.id, currentToken);
+    res.json({ success: true, message: 'Password berhasil diubah' });
+  } catch (err) {
+    console.error('[change-password]', err.message);
+    res.status(500).json({ error: 'Gagal mengubah password' });
+  }
+});
+
+
 app.post('/api/reports', upload.array('attachments', 5), (req, res) => {
   try {
     const { category, subject, description, severity, location, date_incident } = req.body;
