@@ -2,18 +2,22 @@
 
 require('dotenv').config();
 
-const express  = require('express');
-const Database = require('better-sqlite3');
-const multer   = require('multer');
-const bcrypt   = require('bcryptjs');
-const crypto   = require('crypto');
-const path     = require('path');
-const fs       = require('fs');
+const express    = require('express');
+const Database   = require('better-sqlite3');
+const multer     = require('multer');
+const bcrypt     = require('bcryptjs');
+const crypto     = require('crypto');
+const path       = require('path');
+const fs         = require('fs');
+const rateLimit  = require('express-rate-limit');
 
 // ============ CONFIG ============
-const PORT     = parseInt(process.env.PORT || '3000', 10);
-const DB_PATH  = path.resolve(process.env.DB_PATH || './sedap-klh.db');
-const IP_SALT  = process.env.IP_SALT || 'sedap-klh-salt-2026';
+const PORT          = parseInt(process.env.PORT || '3000', 10);
+const DB_PATH       = path.resolve(process.env.DB_PATH || './sedap-klh.db');
+const IP_SALT       = process.env.IP_SALT || 'sedap-klh-salt-2026';
+const ADMIN_PASS    = process.env.ADMIN_PASSWORD  || 'admin123';
+const RPPLH_PASS    = process.env.RPPLH_PASSWORD  || 'rpplh123';
+const ZI_PASS       = process.env.ZI_PASSWORD     || 'zi123';
 
 const app = express();
 
@@ -22,12 +26,40 @@ const uploadsDir = path.join(__dirname, 'uploads');
 const logsDir    = path.join(__dirname, 'logs');
 [uploadsDir, logsDir].forEach(d => { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); });
 
+// ============ RATE LIMITERS ============
+const globalLimiter = rateLimit({
+  windowMs: 60 * 1000,      // 1 menit
+  max: 300,                  // maks 300 request per IP per menit
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Terlalu banyak request, coba lagi nanti.' },
+});
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 menit
+  max: 10,                   // maks 10 percobaan login per IP per 15 menit
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Terlalu banyak percobaan login. Coba lagi dalam 15 menit.' },
+});
+app.use(globalLimiter);
+
 // ============ SECURITY HEADERS ============
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'SAMEORIGIN');
   res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
+  res.setHeader('Content-Security-Policy',
+    "default-src 'self'; " +
+    "script-src 'self' 'unsafe-inline' cdn.jsdelivr.net cdnjs.cloudflare.com; " +
+    "style-src 'self' 'unsafe-inline' fonts.googleapis.com cdn.jsdelivr.net cdnjs.cloudflare.com; " +
+    "font-src 'self' fonts.gstatic.com cdnjs.cloudflare.com; " +
+    "img-src 'self' data: blob: www.youtube.com; " +
+    "frame-src www.youtube.com youtube.com; " +
+    "connect-src 'self'; " +
+    "media-src 'self' blob:;"
+  );
   res.removeHeader('X-Powered-By');
   next();
 });
@@ -46,13 +78,28 @@ const storage = multer.diskStorage({
     cb(null, suffix + path.extname(file.originalname).toLowerCase());
   },
 });
+const ALLOWED_EXTENSIONS = /\.(jpeg|jpg|png|gif|webp|pdf|doc|docx|xls|xlsx|txt|mp3|mp4|webm|mov|avi|wav|pptx|ppt)$/i;
+const ALLOWED_MIMES = new Set([
+  'image/jpeg','image/jpg','image/png','image/gif','image/webp',
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'application/vnd.ms-excel',
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  'application/vnd.ms-powerpoint',
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+  'text/plain',
+  'audio/mpeg','audio/mp3','audio/wav',
+  'video/mp4','video/webm','video/quicktime','video/x-msvideo',
+]);
 const upload = multer({
   storage,
   limits: { fileSize: 100 * 1024 * 1024 }, // 100 MB (video support)
   fileFilter: (_req, file, cb) => {
-    const allowed = /\.(jpeg|jpg|png|gif|webp|pdf|doc|docx|xls|xlsx|txt|mp3|mp4|webm|mov|avi|wav|pptx|ppt)$/i;
-    if (allowed.test(path.extname(file.originalname))) cb(null, true);
-    else cb(new Error('Tipe file tidak didukung'));
+    const extOk  = ALLOWED_EXTENSIONS.test(path.extname(file.originalname));
+    const mimeOk = ALLOWED_MIMES.has(file.mimetype);
+    if (extOk && mimeOk) cb(null, true);
+    else cb(new Error('Tipe file tidak didukung atau tidak cocok'));
   },
 });
 
@@ -170,10 +217,11 @@ db.exec(`
 `);
 
 // ============ SEED DEFAULT USERS ============
+// Password diambil dari .env agar tidak hardcoded di source code
 const defaultUsers = [
-  { username: 'admin', password: 'admin123', role: 'admin' },
-  { username: 'rpplh', password: 'rpplh123', role: 'rpplh' },
-  { username: 'zi',    password: 'zi123',    role: 'zi'    },
+  { username: 'admin', password: ADMIN_PASS, role: 'admin' },
+  { username: 'rpplh', password: RPPLH_PASS, role: 'rpplh' },
+  { username: 'zi',    password: ZI_PASS,    role: 'zi'    },
 ];
 for (const u of defaultUsers) {
   const exists = db.prepare('SELECT id FROM admins WHERE username = ?').get(u.username);
@@ -224,7 +272,7 @@ function roleCheck(...roles) {
 }
 
 // ============ AUTH API ============
-app.post('/api/admin/login', (req, res) => {
+app.post('/api/admin/login', loginLimiter, (req, res) => {
   try {
     const { username, password } = req.body;
     if (!username || !password) return res.status(400).json({ error: 'Username dan password wajib diisi' });
@@ -571,7 +619,12 @@ app.post('/api/admin/content', authMiddleware, roleCheck('admin'),
   (req, res) => {
     try {
       const { content_type, title, description, url } = req.body;
-      if (!content_type || !title) return res.status(400).json({ error: 'Tipe dan judul wajib diisi' });
+      const VALID_CONTENT_TYPES = ['berita', 'infografis', 'videografis', 'peraturan'];
+      if (!content_type || !VALID_CONTENT_TYPES.includes(content_type)) {
+        return res.status(400).json({ error: 'Tipe konten tidak valid' });
+      }
+      if (!title || title.trim().length === 0) return res.status(400).json({ error: 'Judul wajib diisi' });
+      if (title.length > 500) return res.status(400).json({ error: 'Judul terlalu panjang (maks 500 karakter)' });
       const image     = req.files?.image ? req.files.image[0].filename : '';
       const file_path = req.files?.file  ? req.files.file[0].filename  : '';
       db.prepare('INSERT INTO content (content_type,title,description,url,image,file_path) VALUES (?,?,?,?,?,?)').run(
