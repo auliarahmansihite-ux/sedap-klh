@@ -159,6 +159,14 @@ db.exec(`
     created_at   DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at   DATETIME DEFAULT CURRENT_TIMESTAMP
   );
+
+  CREATE TABLE IF NOT EXISTS sessions (
+    token TEXT PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    username TEXT NOT NULL,
+    role TEXT NOT NULL,
+    expires_at INTEGER NOT NULL
+  );
 `);
 
 // ============ SEED DEFAULT USERS ============
@@ -184,28 +192,28 @@ function hashIP(ip) {
   return crypto.createHash('sha256').update((ip || '') + IP_SALT).digest('hex').substring(0, 16);
 }
 
-// ============ AUTH — in-memory token store with expiry ============
-const tokenStore = new Map(); // token -> { user, expiresAt }
+// ============ AUTH — Persistent DB token store ============
 const TOKEN_TTL  = 8 * 60 * 60 * 1000; // 8 jam
 
 // Bersihkan token kadaluarsa setiap 30 menit
 setInterval(() => {
-  const now = Date.now();
-  for (const [tok, val] of tokenStore) {
-    if (val.expiresAt < now) tokenStore.delete(tok);
-  }
+  try { db.prepare('DELETE FROM sessions WHERE expires_at < ?').run(Date.now()); } catch(e) {}
 }, 30 * 60 * 1000);
 
 function authMiddleware(req, res, next) {
   const token = req.headers['authorization']?.replace('Bearer ', '');
   if (!token) return res.status(401).json({ error: 'Unauthorized' });
-  const entry = tokenStore.get(token);
-  if (!entry || entry.expiresAt < Date.now()) {
-    tokenStore.delete(token);
-    return res.status(401).json({ error: 'Sesi habis, silakan login kembali' });
+  try {
+    const session = db.prepare('SELECT * FROM sessions WHERE token = ?').get(token);
+    if (!session || session.expires_at < Date.now()) {
+      if (session) db.prepare('DELETE FROM sessions WHERE token = ?').run(token);
+      return res.status(401).json({ error: 'Sesi habis, silakan login kembali' });
+    }
+    req.user = { id: session.user_id, username: session.username, role: session.role };
+    next();
+  } catch (e) {
+    return res.status(500).json({ error: 'Kesalahan server auth' });
   }
-  req.user = entry.user;
-  next();
 }
 
 function roleCheck(...roles) {
@@ -225,10 +233,9 @@ app.post('/api/admin/login', (req, res) => {
       return res.status(401).json({ error: 'Username atau password salah' });
     }
     const token = crypto.randomBytes(32).toString('hex');
-    tokenStore.set(token, {
-      user: { id: admin.id, username: admin.username, role: admin.role },
-      expiresAt: Date.now() + TOKEN_TTL,
-    });
+    db.prepare('INSERT INTO sessions (token, user_id, username, role, expires_at) VALUES (?, ?, ?, ?, ?)').run(
+      token, admin.id, admin.username, admin.role, Date.now() + TOKEN_TTL
+    );
     res.json({ success: true, token, username: admin.username, role: admin.role });
   } catch (err) {
     console.error('[login]', err.message);
@@ -237,9 +244,13 @@ app.post('/api/admin/login', (req, res) => {
 });
 
 app.post('/api/admin/logout', authMiddleware, (req, res) => {
-  const token = req.headers['authorization']?.replace('Bearer ', '');
-  tokenStore.delete(token);
-  res.json({ success: true });
+  try {
+    const token = req.headers['authorization']?.replace('Bearer ', '');
+    db.prepare('DELETE FROM sessions WHERE token = ?').run(token);
+    res.json({ success: true });
+  } catch (e) {
+    res.status(500).json({ error: 'Logout gagal' });
+  }
 });
 
 // ============ WHISTLEBLOWING PUBLIC API ============

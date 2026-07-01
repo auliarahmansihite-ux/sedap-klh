@@ -673,6 +673,9 @@
       const res = await fetch(API+'/api/admin/content', {method:'POST', headers:headersAuth(), body:fd});
       if (res.ok) {
         closeModal(); loadContent();
+      } else if (res.status === 401) {
+        alert('Sesi Anda telah habis. Silakan login kembali.');
+        logout();
       } else {
         alert('Gagal menambah konten. Pastikan file sesuai format dan ukuran.');
       }
@@ -680,7 +683,12 @@
 
     async function deleteContent(id) {
       if(!confirm('Yakin hapus konten ini?')) return;
-      await fetch(API+`/api/admin/content/${id}`,{method:'DELETE',headers:headersAuth()});
+      const res = await fetch(API+`/api/admin/content/${id}`,{method:'DELETE',headers:headersAuth()});
+      if (res.status === 401) {
+        alert('Sesi Anda telah habis. Silakan login kembali.');
+        logout();
+        return;
+      }
       loadContent();
     }
 
