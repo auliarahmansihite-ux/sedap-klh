@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <link rel="icon" type="image/png" href="assets/images/logo.png" />
@@ -148,7 +148,15 @@
         if (p.image) {
           mediaHtml = `<img src="/uploads/${p.image}" alt="Cover" style="width:100%; max-height:500px; object-fit:contain; border-radius:var(--radius-md); margin-bottom:2rem; border:1px solid rgba(255,255,255,0.1);">`;
         } else if (p.file_path && p.file_path.toLowerCase().endsWith('.pdf')) {
-          mediaHtml = `<div style="width:100%; height:700px; margin-bottom:2rem; border-radius:var(--radius-md); overflow:hidden; border:1px solid rgba(255,255,255,0.1);"><iframe src="/uploads/${p.file_path}#view=FitH" width="100%" height="100%" style="border:none;"></iframe></div>`;
+          mediaHtml = `<div style="width:100%; height:700px; margin-bottom:2rem; border-radius:var(--radius-md); overflow:hidden; border:1px solid rgba(74,158,74,0.2); background:var(--bg-card); display:flex; align-items:center; justify-content:center;">
+            <object data="/uploads/${p.file_path}#view=FitH" type="application/pdf" width="100%" height="100%" style="border:none;">
+              <div style="text-align:center; padding:2rem; color:var(--gray-300);">
+                <div style="font-size:4rem; margin-bottom:1rem;">📄</div>
+                <p style="margin-bottom:1rem">Browser atau perangkat Anda tidak mendukung pratinjau dokumen PDF.</p>
+                <a href="/uploads/${p.file_path}" target="_blank" class="btn-primary" style="display:inline-block; text-decoration:none;">Unduh PDF Secara Langsung ⬇️</a>
+              </div>
+            </object>
+          </div>`;
         }
 
         document.getElementById('peratContent').innerHTML = (mediaHtml ? mediaHtml : '') + `<div style="margin-bottom:2rem;">${p.description || 'Tidak ada deskripsi rinci.'}</div>`;
