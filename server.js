@@ -55,8 +55,8 @@ app.use((req, res, next) => {
     "script-src 'self' 'unsafe-inline' cdn.jsdelivr.net cdnjs.cloudflare.com; " +
     "style-src 'self' 'unsafe-inline' fonts.googleapis.com cdn.jsdelivr.net cdnjs.cloudflare.com; " +
     "font-src 'self' fonts.gstatic.com cdnjs.cloudflare.com; " +
-    "img-src 'self' data: blob: img.youtube.com www.youtube.com images.unsplash.com; " +
-    "frame-src 'self' www.youtube.com youtube.com; " +
+    "img-src 'self' data: blob: img.youtube.com www.youtube.com images.unsplash.com *.googleapis.com *.gstatic.com *.google.com; " +
+    "frame-src 'self' www.youtube.com youtube.com www.google.com maps.google.com *.google.com; " +
     "object-src 'self'; " +
     "connect-src 'self'; " +
     "media-src 'self' blob:;"
