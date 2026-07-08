@@ -101,6 +101,7 @@ function initMultiStep(formId) {
   const panes = form.querySelectorAll('.form-pane');
   const indicators = form.querySelectorAll('.form-step-indicator');
   let current = 0;
+  let isInitialLoad = true;
 
   function showPane(idx) {
     panes.forEach((p, i) => p.classList.toggle('active', i === idx));
@@ -108,8 +109,12 @@ function initMultiStep(formId) {
       ind.classList.toggle('active', i === idx);
       ind.classList.toggle('done', i < idx);
     });
-    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Only scroll on user interaction, not on initial page load
+    if (!isInitialLoad) {
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
     current = idx;
+    isInitialLoad = false;
   }
 
   form.querySelectorAll('.btn-next').forEach(btn => {
